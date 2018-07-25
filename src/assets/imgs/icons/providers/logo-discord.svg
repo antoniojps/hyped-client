@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>logo-discord</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Color" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD-Copy" transform="translate(-277.000000, -444.000000)">
+            <g id="Login" transform="translate(277.000000, 292.000000)">
+                <g id="login-btn-copy" transform="translate(0.000000, 152.000000)">
+                    <g id="logo">
+                        <g id="logo-discord">
+                            <g id="discord">
+                                <rect id="Rectangle-path" fill="#7289DA" fill-rule="nonzero" x="0" y="0" width="40" height="40" rx="15"></rect>
+                                <path d="M27.03125,30.625 L25.390625,28.671875 C28.59375,27.8125 29.84375,25.625 29.84375,25.625 C25.78125,29.453125 14.6875,29.609375 10.390625,25.625 C10.390625,25.625 11.484375,27.65625 14.765625,28.671875 L12.96875,30.625 C7.5,30.546875 5.390625,26.875 5.390625,26.875 C5.390625,18.75 8.984375,12.265625 8.984375,12.265625 C12.65625,9.6875 16.015625,9.6875 16.015625,9.6875 L16.25,10 C11.71875,11.25 9.765625,13.28125 9.765625,13.28125 C15.078125,9.6875 26.015625,10 30.3125,13.28125 C30.390625,13.203125 27.734375,11.09375 23.59375,10 L23.984375,9.6875 C23.984375,9.6875 27.34375,9.6875 31.015625,12.265625 C31.015625,12.265625 34.609375,18.75 34.609375,26.875 C34.609375,26.875 32.5,30.546875 27.03125,30.625 Z" id="Shape" fill="#FFFFFF" fill-rule="nonzero"></path>
+                                <ellipse id="Oval" fill="#7289DA" fill-rule="nonzero" cx="15.3125" cy="21.796875" rx="2.578125" ry="2.734375"></ellipse>
+                                <ellipse id="Oval" fill="#7289DA" fill-rule="nonzero" cx="24.375" cy="21.796875" rx="2.578125" ry="2.734375"></ellipse>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

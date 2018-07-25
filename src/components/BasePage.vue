@@ -1,17 +1,24 @@
 <template>
-  <el-row class="container containerSpacing">
+  <div>
+    <TheHeader/>
+    <el-row class="container containerSpacing">
+      <el-col :span="24" class="paddingBase">
 
-    <el-col :span="24" class="paddingBase">
+        <slot/>
 
-      <slot/>
+      </el-col>
 
-    </el-col>
-
-  </el-row>
+    </el-row>
+  </div>
 </template>
 
 <script>
+import TheHeader from './TheHeader'
+
 export default {
   name: 'BasePage',
+  components: {
+    TheHeader,
+  },
 }
 </script>

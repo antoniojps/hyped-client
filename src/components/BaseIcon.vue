@@ -3,7 +3,7 @@
     <img
       v-show="loaded"
       :key="src"
-      :src="src"
+      :src="icon"
       @load="loaded = true"
     >
   </div>
@@ -22,6 +22,15 @@ export default {
     return {
       loaded: false,
     }
+  },
+
+  computed: {
+    icon () {
+      // eslint-disable-next-line
+      return require(`@/assets/imgs/icons/${
+        this.src
+      }.svg`)
+    },
   },
 }
 </script>

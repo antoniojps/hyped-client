@@ -77,6 +77,13 @@
     bottom:$spacingBase;
   }
 }
+
+.paddingRight {
+  padding: {
+    right: $spacingBase;
+  }
+}
+
 .paddingBottomLarge {
   padding: {
     bottom:$spacingAverage;

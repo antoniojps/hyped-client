@@ -1,45 +1,48 @@
 p {
   font-size: $sizeBase;
   line-height: $sizeXLarge;
-  color:$colorBase2;
-  padding:{
+  color: $colorBase2;
+  padding: {
     bottom: $spacingBase;
   }
 }
 
-h1,h2,h3,h4 {
-  font-weight:$bold;
-  color:$colorBase;
+h1,
+h2,
+h3,
+h4 {
+  font-family: $fontAlternative;
+  font-weight: 500;
+  color: $colorBase;
 }
 
 h1 {
-  font-size:$sizeXMedium;
-  padding:{
+  font-size: $sizeXMedium;
+  padding: {
     bottom: $spacingBase;
   }
   @include screen(md) {
-    font-size:$sizeXLarge;
+    font-size: $sizeXLarge;
   }
 }
 
-h2{
-  font-size:$sizeLarge;
-  padding:{
+h2 {
+  font-size: $sizeLarge;
+  padding: {
     bottom: $spacingBase;
   }
-
 }
 
 h3 {
   font-size: $sizeMedium;
-  padding:{
+  padding: {
     bottom: $spacingLSmall;
   }
 }
 
 h4 {
   font-size: $sizeBase;
-  padding:{
+  padding: {
     bottom: $spacingLSmall;
   }
 }
@@ -48,55 +51,55 @@ h4 {
   color: $colorVerde;
 }
 
-.font--alternative{
-  font-family:$fontAlternative;
+.font--alternative {
+  font-family: $fontAlternative;
 }
 
 .bold {
-  font-weight:$bold;
+  font-weight: $bold;
 }
 
 .regular {
-  font-weight:$regular;
+  font-weight: $regular;
 }
 
 .size-xl {
-  font-size:$sizeXLarge;
+  font-size: $sizeXLarge;
 }
 
-.size-lg{
-  font-size:$sizeLarge;
+.size-lg {
+  font-size: $sizeLarge;
 }
 
-.size-md{
-  font-size:$sizeMedium;
+.size-md {
+  font-size: $sizeMedium;
 }
 
-.size-sm{
-  font-size:$sizeSmall;
+.size-sm {
+  font-size: $sizeSmall;
+  line-height: $sizeSmall*2;
 }
 
 .align-right {
-  text-align:right;
+  text-align: right;
 }
 
 .align-left {
-  text-align:left;
+  text-align: left;
 }
 
 .align-center {
-  text-align:center;
+  text-align: center;
 }
 
 .faded {
-  color:$colorBase4;
+  color: $colorBase4;
 }
 
 .grey {
-  color:$colorBase2;
+  color: $colorBase3;
 }
 
 .active {
-  color:$colorVerde;
+  color: $colorVerde;
 }
-

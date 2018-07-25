@@ -1,11 +1,7 @@
 <template>
   <div id="app">
     <el-container class="is-vertical">
-
-      <TheHeader/>
-
       <router-view/>
-
     </el-container>
   </div>
 </template>

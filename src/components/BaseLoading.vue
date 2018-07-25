@@ -1,7 +1,10 @@
 <template>
   <div class="base-loading">
-    <div ref="animationLoading" class="base-loading__anim"/>
-    <h3 class="faded">{{ text }}</h3>
+    <div
+      ref="animationLoading"
+      :class="large ? 'base-loading__anim--large' : 'base-loading__anim'"
+    />
+    <p class="base-loading__txt faded">{{ text }}</p>
   </div>
 </template>
 
@@ -14,6 +17,10 @@ export default {
     text: {
       type: String,
       default: 'Loading',
+    },
+    large: {
+      type: Boolean,
+      default: false,
     },
   },
   mounted () {
@@ -40,6 +47,17 @@ export default {
   &__anim {
     width: 10rem;
     height: auto;
+  }
+
+  &__anim--large {
+    width: 15rem;
+    height: auto;
+  }
+
+  &__txt {
+    max-width:20rem;
+    text-align:center;
+    font-weight: bold;
   }
 }
 </style>
