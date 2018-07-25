@@ -1,29 +1,28 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <el-container class="is-vertical">
+
+      <TheHeader/>
+
+      <router-view/>
+
+    </el-container>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+// import CURRENT_USER_QUERY from './graphql/CurrentUser.gql'
+import TheHeader from '@/components/TheHeader.vue'
+
+export default {
+  name: 'App',
+  components: {
+    TheHeader,
+  },
+  data () {
+    return {
+      currentUser: null,
     }
-  }
+  },
 }
-</style>
+</script>

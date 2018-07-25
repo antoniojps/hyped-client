@@ -1,0 +1,85 @@
+// estilos aplicados globalmente
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,body {
+  font-family: $font;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  min-width: $minWidth;
+  font: {
+    size: $sizeBase;
+  }
+  color: $colorBase5;
+  background-color: $colorBg;
+}
+
+hr {
+  border: {
+    top: $borderSize solid $colorBase7;
+  }
+
+  margin: {
+    top: $spacingBase;
+    bottom: $spacingBase;
+  }
+
+}
+
+[v-cloak] {
+  visibility: hidden;
+}
+
+.inline {
+  display: inline;
+}
+
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+}
+
+// links
+
+a {
+  color: $colorVerde;
+  text-decoration: underline;
+  outline: 0;
+
+}
+
+.invisible {
+  visibility:hidden;
+}
+
+.disabled {
+  opacity: 0.75;
+}
+
+// shadows 
+.shadow {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15), 0 6px 6px rgba(0,0,0,0.15)
+}
+
+// icons
+.icon {
+  height: $sizeBase !important; 
+  color: $colorBase;
+  &--spacingRight{
+    padding-right: $spacingSmall;
+  }
+  &--sizeXMedium{
+    height: $sizeXMedium !important;
+  }
+}

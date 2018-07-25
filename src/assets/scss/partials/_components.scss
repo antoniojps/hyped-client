@@ -1,0 +1,7 @@
+.table {
+  &__row{
+		&--roster{
+			word-break: keep-all;
+		}
+	}
+}

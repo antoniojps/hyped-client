@@ -1,0 +1,22 @@
+.el {
+	&-container{
+		width:100%;
+		display:flex;
+		justify-content:center;
+	}
+	&-header{
+		background-color:$colorBase4;
+		display:flex;
+		align-items:center;
+		color:$colorWhite;
+	}
+	&-table{
+		&__expanded-cell{
+			background-color:$colorBase8;
+		}
+	}
+}
+
+.el-select {
+	width:100%;
+}

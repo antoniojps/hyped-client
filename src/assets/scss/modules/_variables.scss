@@ -1,0 +1,70 @@
+/*
+  Definições gerais website bioliving
+  Autor: António Santos
+ */
+
+// Font family
+$font: "Avenir", Helvetica, Arial, sans-serif;
+$fontAlternative: 'Inconsolata', monospace;
+
+// Cores
+
+$colorBg: #262831;
+
+// escuro ao claro
+$colorBase: #fff;
+$colorBase2: #D0D2DB;
+$colorBase3: #6B747D;
+$colorBase4: #434856;
+$colorBase5: #363e54;
+$colorBase6: #262831;
+$colorBase7: #262831;
+$colorBase8: #262831;
+
+$colorVerde: #16C98E;
+$colorVerde2: #16C98E;
+$colorVerde3: #16C98E;
+$colorAzul: #20A0FF;
+$colorAmarelo: #F2A900;
+$colorVermelho: #f1605c;
+$colorWhite: #fff;
+
+// Tamanhos
+$sizeMedium: 1rem; // 16px
+$sizeXSmall: $sizeMedium*.75; // 12px
+$sizeSmall: $sizeMedium*.875; // 14px
+$sizeBase: $sizeMedium*1; // 16px
+$sizeXMedium: $sizeMedium*1.5; // 24px
+$sizeLarge: $sizeMedium*1.625; // 26px
+$sizeXLarge: $sizeMedium*2.25; // 36px
+$sizeXXLarge: $sizeMedium*2.5; // 40px
+
+$borderSize: 1px;
+
+
+// Size
+$spacingXSmall: $sizeMedium * .1875; // 3px
+$spacingSmall: $sizeMedium * .375; // 6px
+$spacingLSmall: $sizeMedium* .75; // 12px
+$spacingBase: $sizeMedium; // 16px
+$spacingAverage: $sizeMedium*1.5; // 24px
+$spacingLarge: $sizeMedium*3; // 48px
+$minWidth: 315px;
+
+// Weight
+$regular: 400;
+$bold: 700;
+
+// Breakpoints
+$breakpoints: (
+  xs:0,
+  sm: 576px,
+  md: 768px,
+  lg: 993px,
+  xl: 1920px
+);
+
+// Other
+$radius: 1rem*0.5;
+$maxWidth: 1140px;
+$minWidth: 330px;

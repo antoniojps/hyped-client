@@ -1,0 +1,3 @@
+[submodule "src/assets/scss/dark-theme-chalk"]
+	path = src/assets/scss/dark-theme-chalk
+	url = https://github.com/antoniojps/dark-theme-chalk
