@@ -39,10 +39,5 @@ export default {
   .base-image {
     display: inline-flex;
     height:auto;
-
-    img {
-      max-width:100%;
-      min-width:100%;
-    }
   }
 </style>

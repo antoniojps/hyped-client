@@ -6,10 +6,11 @@
         v-for="provider in providers"
         :key="provider.name"
         class="paddingBottom"
+        @click="$emit('before-login', provider)"
       >
         <BaseIcon :src="provider.icon" class="paddingRight"/>
         <BaseButton :type="provider.btnType" :costum-color="provider.btnColor">
-          Login through
+          Login with
           <b>{{ provider.name }}</b>
         </BaseButton>
       </li>
@@ -19,7 +20,6 @@
 </template>
 
 <script>
-console.log(process.env.NODE_ENV)
 
 export default {
   name: 'PageLoginModal',
@@ -29,19 +29,19 @@ export default {
         {
           icon: 'providers/logo-discord',
           name: 'Discord',
-          link: '',
+          link: '/auth/discord',
           btnColor: '#7189da',
           btnType: '',
         },
         {
           icon: 'providers/logo-steam',
           name: 'Steam',
-          link: '',
+          link: '/auth/steam',
         },
         {
           icon: 'providers/logo-google',
           name: 'Google',
-          link: '',
+          link: '/auth/google',
           btnType: 'danger',
         },
       ],
@@ -55,6 +55,9 @@ export default {
   max-width: 260px;
   ul {
     list-style-type: none;
+    display:flex;
+    flex-direction: column;
+    align-content:stretch;
     li {
       display: flex;
     }

@@ -1,9 +1,9 @@
 <template>
   <BasePage>
     <div class="home">
-      <a href="http://localhost:3000/auth/discord">
-        <button>Login</button>
-      </a>
+      <router-link tag="div" to="/login">
+        <BaseButton> Login </BaseButton>
+      </router-link>
     </div>
   </BasePage>
 </template>
