@@ -6,7 +6,11 @@
       </div>
       <div ref="elPageLoginRight" class="page-login__rgt paddingLarge">
         <div class="page-login__waves"/>
-        <BaseLoading :text="loadingMsg" large/>
+        <BaseLoading
+          :text="loadingMsg"
+          large
+          class="page-login__loading"
+        />
       </div>
     </div>
 
@@ -29,7 +33,6 @@ export default {
   },
   methods: {
     async redirectProvider (provider) {
-      console.log(process.env.VUE_APP_SERVER_URL)
       this.loadingMsg = `Redirecting to ${provider.name}'s website`
       if (window.innerWidth > process.env.VUE_APP_BREAKPOINT_SM) await this.animFillScreen()
       window.location = process.env.VUE_APP_SERVER_URL + provider.link
@@ -49,7 +52,9 @@ export default {
 
 <style lang="scss" scoped>
 @import '../assets/scss/styles.scss';
-
+body {
+  background: linear-gradient(to left, $colorBg 100%)
+}
 .page-login {
   width: 100%;
   height: 100%;
@@ -71,6 +76,7 @@ export default {
     align-items: center;
     justify-content: center;
     position:absolute;
+    background: linear-gradient(to left, $colorBgDark 100%);
     left:0;
     top:0;
     @include screen(sm){
@@ -81,7 +87,7 @@ export default {
     width: 40%;
     height: 100%;
     position:relative;
-    background-color: $colorBase7;
+    background-color: $colorBg;
     display:none;
     position:absolute;
     right:0;
@@ -89,6 +95,7 @@ export default {
     @include screen(sm){
       display:block;
     }
+    z-index: 1;
   }
   &__waves {
     width:100%;
@@ -98,7 +105,7 @@ export default {
     position:absolute;
     transform: translateX(-120%);
     background-image: url('../assets/imgs/bg/login_bg.svg');
-    z-index: -10;
+    z-index:-10;
   }
 }
 </style>

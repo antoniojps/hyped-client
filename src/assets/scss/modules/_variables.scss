@@ -8,7 +8,13 @@ $fontAlternative: "Teko", "Avenir", Helvetica, Arial, sans-serif;
 
 // Cores
 
-$colorBg: #262831;
+$colorVerde: #16C98E;
+$colorVerde2: #16C98E;
+$colorVerde3: #16C98E;
+$colorAzul: #20A0FF;
+$colorAmarelo: #D89907;
+$colorVermelho: #f1605c;
+$colorWhite: #fff;
 
 // escuro ao claro
 $colorBase: #fff;
@@ -20,23 +26,21 @@ $colorBase6: #262831;
 $colorBase7: #20222A;
 $colorBase8: #262831;
 
-$colorVerde: #16C98E;
-$colorVerde2: #16C98E;
-$colorVerde3: #16C98E;
-$colorAzul: #20A0FF;
-$colorAmarelo: #F2A900;
-$colorVermelho: #f1605c;
-$colorWhite: #fff;
+$colorBgLight: #3F4452;
+$colorBg: #262831;
+$colorBgDark: #20222A;
+$colorActive: $colorAmarelo;
 
 // Tamanhos
 $sizeMedium: 1rem; // 16px
 $sizeXSmall: $sizeMedium*.75; // 12px
 $sizeSmall: $sizeMedium*.875; // 14px
 $sizeBase: $sizeMedium*1; // 16px
+$sizeSMedium: $sizeMedium*1.375; // 22px
 $sizeXMedium: $sizeMedium*1.5; // 24px
 $sizeLarge: $sizeMedium*1.625; // 26px
 $sizeXLarge: $sizeMedium*2.25; // 36px
-$sizeXXLarge: $sizeMedium*2.5; // 40px
+$sizeXXLarge: $sizeMedium*2.875; // 46px
 
 $borderSize: 1px;
 
@@ -44,10 +48,10 @@ $borderSize: 1px;
 // Size
 $spacingXSmall: $sizeMedium * .1875; // 3px
 $spacingSmall: $sizeMedium * .375; // 6px
-$spacingLSmall: $sizeMedium* .75; // 12px
-$spacingBase: $sizeMedium; // 16px
-$spacingAverage: $sizeMedium*1.5; // 24px
-$spacingLarge: $sizeMedium*3; // 48px
+$spacingLSmall: $sizeMedium * .75; // 12px
+$spacingBase: $sizeMedium * 1.5; // 24px
+$spacingAverage: $sizeMedium * 1.5; // 24px
+$spacingLarge: $sizeMedium * 2.75; // 44px
 $minWidth: 315px;
 
 // Weight
