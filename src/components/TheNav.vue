@@ -57,7 +57,7 @@ export default {
     display:flex;
     flex-direction:column;
     &__item {
-      margin-bottom: $spacingBase;
+      margin-bottom: $sizeSmall;
       text-align: left;
       .el-button {
           width: 100%;
