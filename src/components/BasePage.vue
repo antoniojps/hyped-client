@@ -1,5 +1,5 @@
 <template>
-  <div class="page" @click="isNavOpen = false">
+  <div class="page" @click="handlePageClick">
     <div class="page-header">
       <div class="flex">
         <TheNavHamburguer
@@ -7,7 +7,7 @@
           :open="isNavOpen"
           @click.native.stop="handleNavClick"
         />
-        <h1>Hyped Arena</h1>
+        <slot name="header"/>
       </div>
       <UserPubgLogo/>
     </div>
@@ -18,7 +18,8 @@
 <script>
 import UserPubgLogo from '@/components/UserPubgLogo.vue'
 import TheNavHamburguer from '@/components/TheNavHamburguer'
-import { mapMutations } from 'vuex'
+import { mapMutations, mapGetters } from 'vuex'
+import { BREAKPOINTS } from '@/config'
 
 export default {
   name: 'BasePage',
@@ -26,16 +27,33 @@ export default {
     UserPubgLogo,
     TheNavHamburguer,
   },
+  data () {
+    return {
+      windowWidth: document.documentElement.clientWidth,
+    }
+  },
   computed: {
-    isNavOpen () {
-      return this.$store.state.isNavOpen
-    },
+    ...mapGetters('ui', ['isNavOpen']),
+  },
+  created () {
+    window.addEventListener('resize', this.handleResize)
+  },
+  beforeDestroy () {
+    window.removeEventListener('resize', this.handleResize)
   },
   methods: {
-    ...mapMutations(['navHandler']),
+    ...mapMutations('ui', ['navHandler']),
     handleNavClick () {
-      if (this.isNavOpen) this.navHandler(false)
-      else this.navHandler(true)
+      if (this.windowWidth <= BREAKPOINTS.md) {
+        if (this.isNavOpen) this.navHandler(false)
+        else this.navHandler(true)
+      }
+    },
+    handlePageClick () {
+      if (this.windowWidth <= BREAKPOINTS.md && this.isNavOpen) this.navHandler(false)
+    },
+    handleResize () {
+      this.windowWidth = document.documentElement.clientWidth
     },
   },
 }

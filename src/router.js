@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import PageHome from './views/PageHome.vue'
-import PageAbout from './views/PageAbout.vue'
+import PageMyTeams from './views/PageMyTeams.vue'
 import PageLogin from './views/PageLogin.vue'
 
 Vue.use(Router)
@@ -19,9 +19,9 @@ export default new Router({
       component: PageLogin,
     },
     {
-      path: '/about',
-      name: 'about',
-      component: PageAbout,
+      path: '/myteams',
+      name: 'MyTeams',
+      component: PageMyTeams,
     },
   ],
 })

@@ -14,7 +14,7 @@ import { TweenMax } from 'gsap'
 import TheNav from '@/components/TheNav.vue'
 import { eventBus } from '@/main'
 import { BREAKPOINTS } from '@/config'
-import { mapMutations } from 'vuex'
+import { mapMutations, mapGetters } from 'vuex'
 
 export default {
   name: 'BaseLayout',
@@ -27,9 +27,7 @@ export default {
     }
   },
   computed: {
-    isNavOpen () {
-      return this.$store.state.isNavOpen
-    },
+    ...mapGetters('ui', ['isNavOpen']),
   },
   created () {
     eventBus.$on('nav-open', this.navOpen)
@@ -42,15 +40,13 @@ export default {
     window.removeEventListener('resize', this.handleResize)
   },
   methods: {
-    ...mapMutations(['navHandler']),
+    ...mapMutations('ui', ['navHandler']),
     navOpen () {
-      console.log('open nav')
       this.navHandler(true)
       const elMain = this.$refs.elLayoutMain.$el
       TweenMax.to(elMain, 0.3, { x: '80%', ease: Power1.easeIn })
     },
     navClose () {
-      console.log('close nav')
       this.navHandler(false)
       const elMain = this.$refs.elLayoutMain.$el
       TweenMax.to(elMain, 0.3, { x: '0%', ease: Power1.easeIn })

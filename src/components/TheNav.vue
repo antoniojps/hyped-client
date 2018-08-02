@@ -8,6 +8,7 @@
       :to="item.link"
       class="nav__item"
       tag="div"
+      @click.native="handleSelect"
     >
       <BaseButton>{{ item.text }}</BaseButton>
     </router-link>
@@ -15,6 +16,8 @@
 </template>
 
 <script>
+import { eventBus } from '@/main'
+
 export default {
   data () {
     return {
@@ -44,7 +47,7 @@ export default {
   },
   methods: {
     handleSelect () {
-      console.log('handle select')
+      eventBus.$emit('nav-close')
     },
   },
 }

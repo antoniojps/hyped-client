@@ -2,7 +2,7 @@
   <BasePage>
 
     <template slot="header">
-      <h1>test</h1>
+      <h1>My teams</h1>
     </template>
 
     <div class="home">
@@ -14,6 +14,6 @@
 
 <script>
 export default {
-  name: 'Home',
+  name: 'MyTeams',
 }
 </script>

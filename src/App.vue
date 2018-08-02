@@ -11,7 +11,7 @@
 export default {
   name: 'App',
   computed: {
-    isLayoutFullscreen: function () {
+    isLayoutFullscreen () {
       return this.$route.path === '/login'
     },
   },

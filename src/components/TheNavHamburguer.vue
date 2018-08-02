@@ -57,6 +57,8 @@
 
 <script>
 import { eventBus } from '@/main'
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'TheNavHamburguer',
   props: {
@@ -66,8 +68,9 @@ export default {
     },
   },
   computed: {
+    ...mapGetters('ui', ['isNavOpen']),
     color () {
-      if (this.$store.state.isNavOpen) return '#D89907'
+      if (this.isNavOpen) return '#D89907'
       return '#FFFFFF'
     },
   },
