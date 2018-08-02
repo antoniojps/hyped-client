@@ -5,10 +5,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-
+    isNavOpen: false,
   },
   mutations: {
-
+    navHandler (state, openOrClose) {
+      state.isNavOpen = openOrClose
+    },
   },
   actions: {
 

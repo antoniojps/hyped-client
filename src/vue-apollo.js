@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueApollo from 'vue-apollo'
 import { createApolloClient } from 'vue-cli-plugin-apollo/graphql-client'
 import { HttpLink } from 'apollo-link-http'
+import { ENDPOINT } from '@/config'
 
 // Install the vue plugin
 Vue.use(VueApollo)
@@ -14,7 +15,7 @@ const httpLink = new HttpLink({
 // Config
 const defaultOptions = {
   // You can use `https` for secure connection (recommended in production)
-  httpEndpoint: process.env.VUE_APP_GRAPHQL_HTTP || 'http://localhost:3000/graphql',
+  httpEndpoint: ENDPOINT || 'http://localhost:3000/graphql',
   // You can use `wss` for secure connection (recommended in production)
   // Use `null` to disable subscriptions
   wsEndpoint: null,

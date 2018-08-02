@@ -20,6 +20,7 @@
 <script>
 import PageLoginModal from '@/components/PageLoginModal'
 import { TweenLite } from 'gsap'
+import { BREAKPOINTS, ENDPOINT } from '@/config'
 
 export default {
   name: 'PageLogin',
@@ -34,8 +35,8 @@ export default {
   methods: {
     async redirectProvider (provider) {
       this.loadingMsg = `Redirecting to ${provider.name}'s website`
-      if (window.innerWidth > process.env.VUE_APP_BREAKPOINT_SM) await this.animFillScreen()
-      window.location = process.env.VUE_APP_SERVER_URL + provider.link
+      if (window.innerWidth > BREAKPOINTS.sm) await this.animFillScreen()
+      window.location = ENDPOINT + provider.link
     },
     animFillScreen () {
       return new Promise((resolve) => {

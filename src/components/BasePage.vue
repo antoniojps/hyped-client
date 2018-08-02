@@ -3,9 +3,8 @@
     <div class="page-header">
       <div class="flex">
         <TheNavHamburguer
+          v-cloak
           :open="isNavOpen"
-          @openNav="isNavOpen = true"
-          @closeNav="isNavOpen = false"
           @click.native.stop="handleNavClick"
         />
         <h1>Hyped Arena</h1>
@@ -19,6 +18,7 @@
 <script>
 import UserPubgLogo from '@/components/UserPubgLogo.vue'
 import TheNavHamburguer from '@/components/TheNavHamburguer'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'BasePage',
@@ -26,15 +26,16 @@ export default {
     UserPubgLogo,
     TheNavHamburguer,
   },
-  data () {
-    return {
-      isNavOpen: false,
-    }
+  computed: {
+    isNavOpen () {
+      return this.$store.state.isNavOpen
+    },
   },
   methods: {
+    ...mapMutations(['navHandler']),
     handleNavClick () {
-      if (this.isNavOpen) this.isNavOpen = false
-      else this.isNavOpen = true
+      if (this.isNavOpen) this.navHandler(false)
+      else this.navHandler(true)
     },
   },
 }

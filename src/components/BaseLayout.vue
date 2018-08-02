@@ -13,30 +13,53 @@
 import { TweenMax } from 'gsap'
 import TheNav from '@/components/TheNav.vue'
 import { eventBus } from '@/main'
+import { BREAKPOINTS } from '@/config'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'BaseLayout',
   components: {
     TheNav,
   },
+  data () {
+    return {
+      windowWidth: document.documentElement.clientWidth,
+    }
+  },
+  computed: {
+    isNavOpen () {
+      return this.$store.state.isNavOpen
+    },
+  },
   created () {
     eventBus.$on('nav-open', this.navOpen)
     eventBus.$on('nav-close', this.navClose)
+    window.addEventListener('resize', this.handleResize)
   },
-  beforeDestroy: function () {
+  beforeDestroy () {
     eventBus.$off('nav-open', this.navOpen)
     eventBus.$off('nav-close', this.navClose)
+    window.removeEventListener('resize', this.handleResize)
   },
   methods: {
+    ...mapMutations(['navHandler']),
     navOpen () {
       console.log('open nav')
+      this.navHandler(true)
       const elMain = this.$refs.elLayoutMain.$el
       TweenMax.to(elMain, 0.3, { x: '80%', ease: Power1.easeIn })
     },
     navClose () {
       console.log('close nav')
+      this.navHandler(false)
       const elMain = this.$refs.elLayoutMain.$el
       TweenMax.to(elMain, 0.3, { x: '0%', ease: Power1.easeIn })
+    },
+    handleResize () {
+      this.windowWidth = document.documentElement.clientWidth
+      if (this.windowWidth > BREAKPOINTS.md) {
+        if (this.isNavOpen) eventBus.$emit('nav-close')
+      }
     },
   },
 }
