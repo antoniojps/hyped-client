@@ -1,6 +1,7 @@
 <template>
   <div class="base-image">
     <img
+      v-cloak
       v-show="loaded"
       :key="src"
       :src="icon"

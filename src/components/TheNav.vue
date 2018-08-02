@@ -2,6 +2,16 @@
   <div class="nav">
     <BaseIcon src="logos/hyped_logo" class="nav__item"/>
     <h4 class="nav__title faded">Hyped arena</h4>
+
+    <router-link
+      v-if="!user"
+      to="/login"
+      class="nav__item"
+      tag="div"
+    >
+      <BaseButton>Login</BaseButton>
+    </router-link>
+
     <router-link
       v-for="item in items"
       :key="item.link"
@@ -12,20 +22,28 @@
     >
       <BaseButton>{{ item.text }}</BaseButton>
     </router-link>
+
+    <router-link
+      v-if="user"
+      to="/"
+      class="nav__item router-link-disable"
+      tag="div"
+      @click.native="handleLogout"
+    >
+      <BaseButton>Logout</BaseButton>
+    </router-link>
+
   </div>
 </template>
 
 <script>
 import { eventBus } from '@/main'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   data () {
     return {
       items: [
-        {
-          link: '/login',
-          text: 'Login',
-        },
         {
           link: '/',
           text: 'Home',
@@ -45,9 +63,16 @@ export default {
       ],
     }
   },
+  computed: {
+    ...mapGetters('user', ['user']),
+  },
   methods: {
+    ...mapMutations('user', ['UPDATE_USER']),
     handleSelect () {
       eventBus.$emit('nav-close')
+    },
+    handleLogout () {
+      this.UPDATE_USER(null)
     },
   },
 }
@@ -91,5 +116,16 @@ export default {
         background-color: $colorActive;
       }
     }
+    .router-link-disable.router-link-exact-active {
+        .el-button {
+        border-color: $colorBase6;
+        background-color: $colorBase6;
+        color: $colorBase4;
+          &:hover {
+            border-color: darken($colorBgLight,10%);
+            background-color: darken($colorBgLight,10%);
+          }
+        }
+      }
   }
 </style>

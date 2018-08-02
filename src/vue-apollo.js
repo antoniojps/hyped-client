@@ -2,20 +2,20 @@ import Vue from 'vue'
 import VueApollo from 'vue-apollo'
 import { createApolloClient } from 'vue-cli-plugin-apollo/graphql-client'
 import { HttpLink } from 'apollo-link-http'
-import { ENDPOINT } from '@/config'
+import { ENDPOINT_GRAPHQL } from '@/config'
 
 // Install the vue plugin
 Vue.use(VueApollo)
 
 const httpLink = new HttpLink({
-  uri: 'http://localhost:3000/graphql',
+  uri: ENDPOINT_GRAPHQL,
   credentials: 'include',
 })
 
 // Config
 const defaultOptions = {
   // You can use `https` for secure connection (recommended in production)
-  httpEndpoint: ENDPOINT || 'http://localhost:3000/graphql',
+  httpEndpoint: ENDPOINT_GRAPHQL,
   // You can use `wss` for secure connection (recommended in production)
   // Use `null` to disable subscriptions
   wsEndpoint: null,
@@ -67,24 +67,4 @@ export function createProvider (options = {}) {
   })
 
   return apolloProvider
-}
-
-// Manually call this when user log in
-export async function onLogin (apolloClient, token) {
-  try {
-    await apolloClient.resetStore()
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.log('%cError on cache reset (login)', 'color: orange;', e.message)
-  }
-}
-
-// Manually call this when user log out
-export async function onLogout (apolloClient) {
-  try {
-    await apolloClient.resetStore()
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.log('%cError on cache reset (logout)', 'color: orange;', e.message)
-  }
 }

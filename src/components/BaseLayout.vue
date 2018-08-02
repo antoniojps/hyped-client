@@ -40,14 +40,14 @@ export default {
     window.removeEventListener('resize', this.handleResize)
   },
   methods: {
-    ...mapMutations('ui', ['navHandler']),
+    ...mapMutations('ui', ['TOGGLE_NAV']),
     navOpen () {
-      this.navHandler(true)
+      this.TOGGLE_NAV(true)
       const elMain = this.$refs.elLayoutMain.$el
       TweenMax.to(elMain, 0.3, { x: '80%', ease: Power1.easeIn })
     },
     navClose () {
-      this.navHandler(false)
+      this.TOGGLE_NAV(false)
       const elMain = this.$refs.elLayoutMain.$el
       TweenMax.to(elMain, 0.3, { x: '0%', ease: Power1.easeIn })
     },

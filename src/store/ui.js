@@ -10,7 +10,7 @@ export default {
   },
 
   mutations: {
-    navHandler (state, value) {
+    TOGGLE_NAV (state, value) {
       state.isNavOpen = value
     },
   },

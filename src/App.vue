@@ -6,10 +6,11 @@
 </template>
 
 <script>
-// import CURRENT_USER_QUERY from './graphql/CurrentUser.gql'
+import userMixin from '@/mixins/user'
 
 export default {
   name: 'App',
+  mixins: [userMixin],
   computed: {
     isLayoutFullscreen () {
       return this.$route.path === '/login'

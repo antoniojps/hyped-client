@@ -42,15 +42,15 @@ export default {
     window.removeEventListener('resize', this.handleResize)
   },
   methods: {
-    ...mapMutations('ui', ['navHandler']),
+    ...mapMutations('ui', ['TOGGLE_NAV']),
     handleNavClick () {
       if (this.windowWidth <= BREAKPOINTS.md) {
-        if (this.isNavOpen) this.navHandler(false)
-        else this.navHandler(true)
+        if (this.isNavOpen) this.TOGGLE_NAV(false)
+        else this.TOGGLE_NAV(true)
       }
     },
     handlePageClick () {
-      if (this.windowWidth <= BREAKPOINTS.md && this.isNavOpen) this.navHandler(false)
+      if (this.windowWidth <= BREAKPOINTS.md && this.isNavOpen) this.TOGGLE_NAV(false)
     },
     handleResize () {
       this.windowWidth = document.documentElement.clientWidth
