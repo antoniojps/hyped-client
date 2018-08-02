@@ -4,7 +4,7 @@
       <TheNav/>
     </el-aside>
     <el-main ref="elLayoutMain">
-      <router-view/>
+      <router-view :key="$route.fullPath"/>
     </el-main>
   </el-container>
 </template>

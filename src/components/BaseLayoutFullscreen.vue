@@ -1,6 +1,6 @@
 <template>
   <el-container class="container">
-    <router-view/>
+    <router-view :key="$route.fullPath"/>
   </el-container>
 </template>
 

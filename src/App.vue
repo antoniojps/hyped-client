@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <BaseLayoutFullscreen v-if="isLayoutFullscreen"/>
-    <BaseLayout v-else/>
+    <transition name="el-fade-in" mode="out-in">
+      <BaseLayoutFullscreen v-if="isLayoutFullscreen"/>
+      <BaseLayout v-else/>
+    </transition>
   </div>
 </template>
 

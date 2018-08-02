@@ -1,37 +1,36 @@
 <template>
   <div class="nav">
-    <BaseIcon src="logos/hyped_logo" class="nav__item"/>
-    <h4 class="nav__title faded">Hyped arena</h4>
+    <div class="nav__top">
+      <BaseIcon src="logos/hyped_logo" class="nav__item"/>
+      <h4 class="nav__title faded">Hyped arena</h4>
 
-    <router-link
-      v-if="!user"
-      to="/login"
-      class="nav__item"
-      tag="div"
-    >
-      <BaseButton>Login</BaseButton>
-    </router-link>
-
-    <router-link
-      v-for="item in items"
-      :key="item.link"
-      :to="item.link"
-      class="nav__item"
-      tag="div"
-      @click.native="handleSelect"
-    >
-      <BaseButton>{{ item.text }}</BaseButton>
-    </router-link>
-
-    <router-link
-      v-if="user"
-      to="/"
-      class="nav__item router-link-disable"
-      tag="div"
-      @click.native="handleLogout"
-    >
-      <BaseButton>Logout</BaseButton>
-    </router-link>
+      <router-link
+        v-if="!user"
+        to="/login"
+        class="nav__item"
+        tag="div"
+      >
+        <BaseButton>Login</BaseButton>
+      </router-link>
+      <router-link
+        v-for="item in items"
+        :key="item.link"
+        :to="item.link"
+        class="nav__item"
+        tag="div"
+        @click.native="handleSelect"
+      >
+        <BaseButton>{{ item.text }}</BaseButton>
+      </router-link>
+    </div>
+    <div class="nav__bottom">
+      <div
+        v-if="user"
+        class="nav__item button-logout"
+      >
+        <BaseButton @click.native="handleLogout">Logout</BaseButton>
+      </div>
+    </div>
 
   </div>
 </template>
@@ -39,6 +38,7 @@
 <script>
 import { eventBus } from '@/main'
 import { mapGetters, mapMutations } from 'vuex'
+import { logout } from '@/utils/requests'
 
 export default {
   data () {
@@ -71,7 +71,8 @@ export default {
     handleSelect () {
       eventBus.$emit('nav-close')
     },
-    handleLogout () {
+    async handleLogout () {
+      await logout()
       this.UPDATE_USER(null)
     },
   },
@@ -84,6 +85,19 @@ export default {
   .nav {
     display:flex;
     flex-direction:column;
+    justify-content: space-between;
+    height: 100%;
+    &__top {
+      display:flex;
+      flex-direction: column;
+    }
+    &__bottom {
+      display:flex;
+      flex-direction: column;
+      .nav__item {
+        margin-bottom: 0;
+      }
+    }
     &__item {
       margin-bottom: $sizeSmall;
       text-align: left;
@@ -116,7 +130,7 @@ export default {
         background-color: $colorActive;
       }
     }
-    .router-link-disable.router-link-exact-active {
+    .button-logout {
         .el-button {
         border-color: $colorBase6;
         background-color: $colorBase6;

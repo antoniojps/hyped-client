@@ -1,0 +1,11 @@
+import axios from 'axios'
+import { ENDPOINT } from '@/config'
+
+const ax = axios.create({
+  baseURL: ENDPOINT,
+  timeout: 1000,
+})
+
+export function logout () {
+  return ax.get('/auth/logout')
+}

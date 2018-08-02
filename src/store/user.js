@@ -7,6 +7,7 @@ export default {
 
   getters: {
     user: state => state.user,
+    userLogedIn: state => !!state.user,
   },
 
   mutations: {

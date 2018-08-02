@@ -9,7 +9,7 @@
         />
         <slot name="header"/>
       </div>
-      <UserPubgLogo/>
+      <UserPubgLogo :text="username"/>
     </div>
     <slot/>
   </div>
@@ -34,6 +34,11 @@ export default {
   },
   computed: {
     ...mapGetters('ui', ['isNavOpen']),
+    ...mapGetters('user', ['user', 'userLogedIn']),
+    username () {
+      if (this.userLogedIn) return this.user.username
+      return 'pubg'
+    },
   },
   created () {
     window.addEventListener('resize', this.handleResize)
