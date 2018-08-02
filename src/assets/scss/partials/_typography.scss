@@ -20,7 +20,7 @@ h5 {
 }
 
 h1 {
-  font-size: $sizeXMedium;
+  font-size: $sizeLarge;
   @include screen(md) {
     font-size: $sizeXXLarge;
   }

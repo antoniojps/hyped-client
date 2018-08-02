@@ -13,6 +13,8 @@ Vue.config.productionTip = false
 // plugins
 Vue.use(Element)
 
+export const eventBus = new Vue()
+
 new Vue({
   router,
   store,

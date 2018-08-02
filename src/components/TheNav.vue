@@ -82,7 +82,7 @@ export default {
       background-color: $colorBg;
     }
 
-    .router-link-active {
+    .router-link-exact-active {
       .el-button {
         border-color: $colorActive;
         background-color: $colorActive;
