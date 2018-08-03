@@ -8,6 +8,7 @@
 import PageLoginModal from '@/components/PageLoginModal'
 import { BREAKPOINTS, ENDPOINT } from '@/config'
 import { eventBus } from '@/main'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'PageLogin',
@@ -20,6 +21,14 @@ export default {
       provider: '',
     }
   },
+  computed: {
+    ...mapGetters('user', ['user']),
+  },
+  beforeMount () {
+    if (this.user) {
+      this.$router.push('/')
+    }
+  },
   created () {
     eventBus.$on('anim-fillscreen-completed', this.windowRedirect)
   },
@@ -30,9 +39,9 @@ export default {
     redirectProvider (provider) {
       this.provider = provider
       this.loadingMsg = `Redirecting to ${provider.name}'s website`
-      if (window.innerWidth > BREAKPOINTS.sm) {
+      if (document.documentElement.clientWidth > BREAKPOINTS.sm) {
         eventBus.$emit('anim-fillscreen')
-      }
+      } else this.windowRedirect()
     },
     windowRedirect () {
       window.location = ENDPOINT + this.provider.link

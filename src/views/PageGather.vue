@@ -36,7 +36,7 @@ export default {
   methods: {
     handleUserError (err) {
       this.error = true
-      this.loadingMsg = `${err}, redirecting you back...`
+      this.loadingMsg = `${err}, redirecting...`
       setTimeout(() => {
         this.$router.push('/')
       }, 1000)

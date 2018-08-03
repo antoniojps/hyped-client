@@ -1,25 +1,26 @@
 <template>
   <div class="page-fullscreen">
     <div class="page-fullscreen__wrapper">
-      <div ref="elPageFullscreenLeft" class="page-fullscreen__lft paddingLarge">
+      <div ref="elPageFullscreenLeft" class="page-fullscreen__lft">
         <slot/>
       </div>
       <div
         ref="elPageFullscreenRight"
         :style="initStyle"
-        class="page-fullscreen__rgt paddingLarge"
+        :class="loadingOnly && 'page-fullscreen__rgt--loadingOnly'"
+        class="page-fullscreen__rgt"
       >
         <div class="page-fullscreen__waves"/>
         <BaseLoading
           v-if="!error"
           :text="loadingMsg"
-          large
+          :large="isBreakpointMd"
           class="page-fullscreen__loading"
         />
         <BaseError
           v-else
           :text="loadingMsg"
-          large
+          :large="isBreakpointMd"
           class="page-fullscreen__loading"
         />
       </div>
@@ -31,6 +32,7 @@
 <script>
 import { TweenLite } from 'gsap'
 import { eventBus } from '@/main'
+import { BREAKPOINTS } from '@/config'
 
 export default {
   name: 'PagePubgName',
@@ -56,6 +58,11 @@ export default {
     return {
       initStyle: '',
     }
+  },
+  computed: {
+    isBreakpointMd () {
+      return document.documentElement.clientWidth >= BREAKPOINTS.md
+    },
   },
   created () {
     eventBus.$on('anim-fillscreen', this.animFillScreen)
@@ -100,9 +107,11 @@ body {
 .page-fullscreen {
   width: 100%;
   height: 100%;
-  left: 0;
   top: 0;
-  position: absolute;
+  @include screen(sm){
+    left: 0;
+  }
+
   &__wrapper {
     display: flex;
     align-items: center;
@@ -115,12 +124,12 @@ body {
     width: 100%;
     height: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
     position:absolute;
     background: linear-gradient(to left, $colorBgDark 100%);
     left:0;
     top:0;
+    align-items: center;
+    justify-content: center;
     @include screen(sm){
       width: 60%;
     }
@@ -138,6 +147,9 @@ body {
       display:block;
     }
     z-index: 1;
+    &--loadingOnly {
+      display: block;
+    }
   }
   &__waves {
     width:100%;

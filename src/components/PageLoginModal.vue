@@ -51,8 +51,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/scss/styles.scss';
 .login-modal {
   max-width: 260px;
+  h1 {
+    margin-bottom: $spacingLSmall;
+    @include screen(sm){
+      margin-bottom: $spacingBase;
+    }
+  }
   ul {
     list-style-type: none;
     display:flex;
