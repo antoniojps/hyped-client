@@ -22,7 +22,7 @@
 <script>
 
 export default {
-  name: 'PageLoginModal',
+  name: 'ModalLogin',
   data: function () {
     return {
       providers: [

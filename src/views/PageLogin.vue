@@ -1,11 +1,11 @@
 <template>
   <BasePageFullscreen :loading-msg="loadingMsg" :anim-reveal="false">
-    <PageLoginModal @before-login="redirectProvider"/>
+    <ModalLogin @before-login="redirectProvider"/>
   </BasePageFullscreen>
 </template>
 
 <script>
-import PageLoginModal from '@/components/PageLoginModal'
+import ModalLogin from '@/components/ModalLogin'
 import { BREAKPOINTS, ENDPOINT } from '@/config'
 import { eventBus } from '@/main'
 import { mapGetters } from 'vuex'
@@ -13,7 +13,7 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'PageLogin',
   components: {
-    PageLoginModal,
+    ModalLogin,
   },
   data () {
     return {

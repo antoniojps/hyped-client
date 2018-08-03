@@ -1,14 +1,18 @@
 <template>
   <BasePageFullscreen>
-    <h1>Test</h1>
+    <ModalPubgNick/>
   </BasePageFullscreen>
 </template>
 
 <script>
+import ModalPubgNick from '@/components/ModalPubgNick'
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'PagePubgName',
+  name: 'PagePubgNick',
+  components: {
+    ModalPubgNick,
+  },
   data () {
     return {
       loadingMsg: 'Login before they get this care package!',

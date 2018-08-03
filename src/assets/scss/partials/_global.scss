@@ -27,7 +27,10 @@ body {
   }
   color: $colorBase5;
   background-color: $colorBgDark;
-  background: linear-gradient(to left, $colorBg 50%, $colorBgDark 50%);
+  background: $colorBgDark;
+  @include screen(md) {
+    background: linear-gradient(to left, $colorBg 50%, $colorBgDark 50%);
+  }
 }
 
 #app {

@@ -35,7 +35,7 @@ import { eventBus } from '@/main'
 import { BREAKPOINTS } from '@/config'
 
 export default {
-  name: 'PagePubgName',
+  name: 'BasePageFullscreen',
   props: {
     animReveal: {
       type: Boolean,
@@ -110,6 +110,7 @@ body {
   top: 0;
   @include screen(sm){
     left: 0;
+    position: absolute;
   }
 
   &__wrapper {

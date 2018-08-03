@@ -5,6 +5,7 @@
       v-show="loaded"
       :key="src"
       :src="icon"
+      :height="height"
       @load="loaded = true"
     >
   </div>
@@ -17,14 +18,16 @@ export default {
       type: String,
       required: true,
     },
+    height: {
+      type: String,
+      default: 'auto',
+    },
   },
-
   data () {
     return {
       loaded: false,
     }
   },
-
   computed: {
     icon () {
       // eslint-disable-next-line

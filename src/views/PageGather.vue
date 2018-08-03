@@ -22,7 +22,7 @@ export default {
   watch: {
     user () {
       if (this.user) {
-        if (!this.user.pubgNick) setTimeout(() => { this.$router.push('/pubgname') }, 800)
+        if (!this.user.pubgNick) setTimeout(() => { this.$router.push('/pubgnick') }, 800)
         else setTimeout(() => { this.$router.push('/') }, 800)
       }
     },

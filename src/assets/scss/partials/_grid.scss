@@ -116,6 +116,18 @@
   }
 }
 
+.marginTop {
+  margin: {
+    top:$spacingBase;
+  }
+}
+.marginTopLarge {
+  margin: {
+    top:$spacingAverage;
+  }
+}
+
+
 .expandir {
   width:100%;
   @include screen(sm){
