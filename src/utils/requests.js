@@ -4,6 +4,7 @@ import { ENDPOINT } from '@/config'
 const ax = axios.create({
   baseURL: ENDPOINT,
   timeout: 1000,
+  withCredentials: true,
 })
 
 export function logout () {

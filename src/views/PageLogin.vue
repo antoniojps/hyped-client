@@ -1,26 +1,13 @@
 <template>
-  <div class="page-login">
-    <div class="page-login__wrapper">
-      <div ref="elPageLoginLeft" class="page-login__lft paddingLarge">
-        <PageLoginModal @before-login="redirectProvider"/>
-      </div>
-      <div ref="elPageLoginRight" class="page-login__rgt paddingLarge">
-        <div class="page-login__waves"/>
-        <BaseLoading
-          :text="loadingMsg"
-          large
-          class="page-login__loading"
-        />
-      </div>
-    </div>
-
-  </div>
+  <BasePageFullscreen :loading-msg="loadingMsg" :anim-reveal="false">
+    <PageLoginModal @before-login="redirectProvider"/>
+  </BasePageFullscreen>
 </template>
 
 <script>
 import PageLoginModal from '@/components/PageLoginModal'
-import { TweenLite } from 'gsap'
 import { BREAKPOINTS, ENDPOINT } from '@/config'
+import { eventBus } from '@/main'
 
 export default {
   name: 'PageLogin',
@@ -30,83 +17,29 @@ export default {
   data () {
     return {
       loadingMsg: 'Login before they get this care package!',
+      provider: '',
     }
   },
+  created () {
+    eventBus.$on('anim-fillscreen-completed', this.windowRedirect)
+  },
+  beforeDestroy () {
+    eventBus.$off('anim-fillscreen-completed', this.windowRedirect)
+  },
   methods: {
-    async redirectProvider (provider) {
+    redirectProvider (provider) {
+      this.provider = provider
       this.loadingMsg = `Redirecting to ${provider.name}'s website`
-      if (window.innerWidth > BREAKPOINTS.sm) await this.animFillScreen()
-      window.location = ENDPOINT + provider.link
+      if (window.innerWidth > BREAKPOINTS.sm) {
+        eventBus.$emit('anim-fillscreen')
+      }
     },
-    animFillScreen () {
-      return new Promise((resolve) => {
-        const elRight = this.$refs.elPageLoginRight
-        TweenLite.to(elRight, 1, { width: '100%',
-          zIndex: 999,
-          ease: Back.easeOut.config(1.7),
-          onComplete: resolve })
-      })
+    windowRedirect () {
+      window.location = ENDPOINT + this.provider.link
     },
   },
 }
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/scss/styles.scss';
-body {
-  background: linear-gradient(to left, $colorBg 100%)
-}
-.page-login {
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  position: absolute;
-  &__wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    position:relative;
-  }
-  &__lft {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position:absolute;
-    background: linear-gradient(to left, $colorBgDark 100%);
-    left:0;
-    top:0;
-    @include screen(sm){
-      width: 60%;
-    }
-  }
-  &__rgt {
-    width: 40%;
-    height: 100%;
-    position:relative;
-    background-color: $colorBg;
-    display:none;
-    position:absolute;
-    right:0;
-    top:0;
-    @include screen(sm){
-      display:block;
-    }
-    z-index: 1;
-  }
-  &__waves {
-    width:100%;
-    height:100%;
-    top:0;
-    left:100%;
-    position:absolute;
-    transform: translateX(-120%);
-    background-image: url('../assets/imgs/bg/login_bg.svg');
-    z-index:-10;
-  }
-}
 </style>

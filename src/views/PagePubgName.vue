@@ -1,29 +1,14 @@
 <template>
-  <div class="page-login">
-    <div class="page-login__wrapper">
-      <div ref="elPageLoginLeft" class="page-login__lft paddingLarge">
-        <h1>Pubg Name</h1>
-      </div>
-      <div ref="elPageLoginRight" class="page-login__rgt paddingLarge">
-        <div class="page-login__waves"/>
-        <BaseLoading
-          :text="loadingMsg"
-          large
-          class="page-login__loading"
-        />
-      </div>
-    </div>
-
-  </div>
+  <BasePageFullscreen>
+    <h1>Test</h1>
+  </BasePageFullscreen>
 </template>
 
 <script>
-import { TweenLite } from 'gsap'
-import { BREAKPOINTS, ENDPOINT } from '@/config'
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'PageLogin',
+  name: 'PagePubgName',
   data () {
     return {
       loadingMsg: 'Login before they get this care package!',
@@ -31,39 +16,6 @@ export default {
   },
   computed: {
     ...mapGetters('user', ['user']),
-  },
-  created () {
-    if (this.user.pubgNick) this.$router.push('/')
-  },
-  async mounted () {
-    await this.animRevealScreen()
-  },
-  methods: {
-    async redirectProvider (provider) {
-      this.loadingMsg = `Redirecting to ${provider.name}'s website`
-      if (window.innerWidth > BREAKPOINTS.sm) await this.animFillScreen()
-      window.location = ENDPOINT + provider.link
-    },
-    animFillScreen () {
-      return new Promise((resolve) => {
-        const elRight = this.$refs.elPageLoginRight
-        TweenLite.to(elRight, 1, { width: '100%',
-          zIndex: 999,
-          ease: Back.easeOut.config(1.7),
-          onComplete: resolve })
-      })
-    },
-    animRevealScreen () {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          const elRight = this.$refs.elPageLoginRight
-          TweenLite.to(elRight, 1, { width: '40%',
-            zIndex: 999,
-            ease: Back.easeOut.config(1.7),
-            onComplete: resolve })
-        }, 1000)
-      })
-    },
   },
 }
 </script>

@@ -1,9 +1,7 @@
 <template>
   <div id="app">
-    <transition name="el-fade-in" mode="out-in">
-      <BaseLayoutFullscreen v-if="isLayoutFullscreen"/>
-      <BaseLayout v-else/>
-    </transition>
+    <BaseLayoutFullscreen v-if="isLayoutFullscreen"/>
+    <BaseLayout v-else/>
   </div>
 </template>
 
@@ -15,8 +13,8 @@ export default {
   mixins: [userMixin],
   computed: {
     isLayoutFullscreen () {
-      const whiteListed = ['/login', '/pubgname']
-      return whiteListed.includes(this.$route.path)
+      const fullscreenRoutes = ['/login', '/pubgname', '/gather']
+      return fullscreenRoutes.includes(this.$route.path)
     },
   },
   watch: {
