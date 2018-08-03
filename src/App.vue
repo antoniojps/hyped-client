@@ -15,7 +15,13 @@ export default {
   mixins: [userMixin],
   computed: {
     isLayoutFullscreen () {
-      return this.$route.path === '/login'
+      const whiteListed = ['/login', '/pubgname']
+      return whiteListed.includes(this.$route.path)
+    },
+  },
+  watch: {
+    '$route' (to, from) {
+      this.currentUser()
     },
   },
 }

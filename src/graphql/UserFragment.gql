@@ -3,6 +3,7 @@ fragment User on User {
   admin
   moderator
   username
+  pubgNick
   email
   avatar {
     small

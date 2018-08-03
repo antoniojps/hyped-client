@@ -10,7 +10,7 @@
         class="nav__item"
         tag="div"
       >
-        <BaseButton>Login</BaseButton>
+        <BaseButton>Login <span class="grey">/ Register</span></BaseButton>
       </router-link>
       <router-link
         v-for="item in items"
@@ -39,6 +39,7 @@
 import { eventBus } from '@/main'
 import { mapGetters, mapMutations } from 'vuex'
 import { logout } from '@/utils/requests'
+import { BREAKPOINTS } from '@/config'
 
 export default {
   data () {
@@ -69,7 +70,7 @@ export default {
   methods: {
     ...mapMutations('user', ['UPDATE_USER']),
     handleSelect () {
-      eventBus.$emit('nav-close')
+      if (document.documentElement.clientWidth <= BREAKPOINTS.md) eventBus.$emit('nav-close')
     },
     async handleLogout () {
       await logout()
