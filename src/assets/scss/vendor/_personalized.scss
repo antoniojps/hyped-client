@@ -8,12 +8,38 @@
 		background-color:$colorBgDark;
 		display:flex;
 		align-items:center;
-		color:$colorWhite;
+		color:$colorBase;
 	}
 	&-table{
 		&__expanded-cell{
 			background-color:$colorBase8;
 		}
+	}
+	// Input Success .el-input--sucesss
+	&-input--success &-input__inner {
+    -webkit-appearance: none;
+    background-color: $colorSuccessDark;
+		border: 1px solid $colorSuccess;
+		color: $colorBase;
+		&::placeholder {
+      color: $colorSuccess;
+		}
+	}
+	&-input--success &-input__suffix {
+		color: $colorSuccess;
+	}
+	// Input Warning .el-input--warning
+	&-input--warning &-input__inner {
+		-webkit-appearance: none;
+		background-color: $colorWarningDark;
+		border: 1px solid $colorWarning;
+		color: $colorBase;
+		&::placeholder {
+			color: $colorWarning;
+		}
+	}
+	&-input--warning &-input__suffix {
+		color: $colorWarning;
 	}
 }
 

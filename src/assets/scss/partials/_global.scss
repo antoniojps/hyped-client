@@ -65,7 +65,7 @@ hr {
 // links
 
 a {
-  color: $colorVerde;
+  color: $colorLink;
   text-decoration: underline;
   outline: 0;
 }
@@ -76,6 +76,10 @@ a {
 
 .disabled {
   opacity: 0.75;
+}
+
+.discreet {
+  opacity: 0.3;
 }
 
 // shadows

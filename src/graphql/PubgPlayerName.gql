@@ -1,0 +1,5 @@
+query pubgPlayer($name: String!) {
+  pubgPlayer(name: $name) {
+    name
+  }
+}

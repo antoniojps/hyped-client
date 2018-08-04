@@ -7,14 +7,13 @@ $font: "Avenir", Helvetica, Arial, sans-serif;
 $fontAlternative: "Teko", "Avenir", Helvetica, Arial, sans-serif;
 
 // Cores
-
-$colorVerde: #16C98E;
-$colorVerde2: #16C98E;
-$colorVerde3: #16C98E;
-$colorAzul: #20A0FF;
-$colorAmarelo: #D89907;
-$colorVermelho: #f1605c;
-$colorWhite: #fff;
+$colorPrimary: #D89907;
+$colorSuccess: #16C98E;
+$colorSuccessDark: #197E5D;
+$colorWarning: #9F86FF;
+$colorWarningDark: #5F4AAD;
+$colorDanger: #E64759;
+$colorInfo: #E64759;
 
 // escuro ao claro
 $colorBase: #fff;
@@ -29,7 +28,8 @@ $colorBase8: #262831;
 $colorBgLight: #3F4452;
 $colorBg: #262831;
 $colorBgDark: #20222A;
-$colorActive: $colorAmarelo;
+$colorActive: $colorPrimary;
+$colorLink: $colorActive;
 
 // Tamanhos
 $sizeMedium: 1rem; // 16px

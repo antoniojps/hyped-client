@@ -10,3 +10,11 @@ const ax = axios.create({
 export function logout () {
   return ax.get('/auth/logout')
 }
+
+// export function queryPubgPlayerName(apolloClient, name) {
+//   try {
+//     apolloClient.query()
+//   } catch (err) {
+
+//   }
+// }
