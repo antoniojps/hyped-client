@@ -1,0 +1,6 @@
+mutation userPubgNickAdd($userId: ID!, $pubgNick: String) {
+  userPubgNickAdd(userId: $userId, pubgNick: $pubgNick) {
+    _id
+		pubgNick
+  }
+}

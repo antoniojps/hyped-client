@@ -1,5 +1,5 @@
 <template>
-  <BasePageFullscreen>
+  <BasePageFullscreen :loading-msg="loadingMsg">
     <ModalPubgNick/>
   </BasePageFullscreen>
 </template>
@@ -15,7 +15,7 @@ export default {
   },
   data () {
     return {
-      loadingMsg: 'Login before they get this care package!',
+      loadingMsg: 'This package is waiting for you!',
     }
   },
   computed: {

@@ -9,7 +9,7 @@
         />
         <slot name="header"/>
       </div>
-      <UserPubgLogo :text="username"/>
+      <UserPubgLogo :text="pubgLogoName"/>
     </div>
     <slot/>
   </div>
@@ -35,8 +35,12 @@ export default {
   computed: {
     ...mapGetters('ui', ['isNavOpen']),
     ...mapGetters('user', ['user', 'userLogedIn']),
-    username () {
-      if (this.userLogedIn) return this.user.username
+    pubgLogoName () {
+      if (this.userLogedIn) {
+        const {pubgNick, username} = this.user
+        if (pubgNick) return pubgNick
+        else return username
+      }
       return 'pubg'
     },
   },
@@ -73,6 +77,7 @@ export default {
     display:flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: $spacingBase;
     &__mobile-nav {
       cursor: pointer;
       padding-right: 1rem;
