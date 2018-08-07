@@ -8,6 +8,7 @@ $fontAlternative: "Teko", "Avenir", Helvetica, Arial, sans-serif;
 
 // Cores
 $colorPrimary: #D89907;
+$colorPrimaryLight: #F2A900;
 $colorSuccess: #16C98E;
 $colorSuccessDark: #197E5D;
 $colorWarning: #9F86FF;
@@ -48,6 +49,7 @@ $borderSize: 1px;
 // Size
 $spacingXSmall: $sizeMedium * .1875; // 3px
 $spacingSmall: $sizeMedium * .375; // 6px
+$spacingMSmall: $sizeMedium*.5; // 8px
 $spacingLSmall: $sizeMedium * .75; // 12px
 $spacingXSBase: $sizeMedium*.875; // 14px
 $spacingSBase: $sizeMedium*1.375; // 22px

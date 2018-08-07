@@ -5,6 +5,7 @@ import PageMyTeams from './views/PageMyTeams.vue'
 import PageLogin from './views/PageLogin.vue'
 import PageGather from './views/PageGather.vue'
 import PagePubgNick from './views/PagePubgNick.vue'
+import PageProfile from './views/PageProfile.vue'
 
 Vue.use(Router)
 
@@ -21,19 +22,24 @@ export default new Router({
       component: PageLogin,
     },
     {
+      path: '/gather',
+      name: 'gather',
+      component: PageGather,
+    },
+    {
       path: '/pubgnick',
       name: 'pubgnick',
       component: PagePubgNick,
     },
     {
+      path: '/profile',
+      name: 'profile',
+      component: PageProfile,
+    },
+    {
       path: '/myteams',
       name: 'myteams',
       component: PageMyTeams,
-    },
-    {
-      path: '/gather',
-      name: 'gather',
-      component: PageGather,
     },
   ],
 })

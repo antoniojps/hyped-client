@@ -5,6 +5,18 @@
       <h4 class="nav__title faded">Hyped arena</h4>
 
       <router-link
+        v-if="user"
+        to="/profile"
+        class="nav__item"
+        tag="div"
+        @click.native="handleSelect"
+      >
+        <BaseButton>
+          <UserAvatarWithName/>
+        </BaseButton>
+      </router-link>
+
+      <router-link
         v-if="!user"
         to="/login"
         class="nav__item"
@@ -12,6 +24,7 @@
       >
         <BaseButton>Login <span class="grey">/ Register</span></BaseButton>
       </router-link>
+
       <router-link
         v-for="item in items"
         :key="item.link"
@@ -36,12 +49,16 @@
 </template>
 
 <script>
+import UserAvatarWithName from '@/components/UserAvatarWithName.vue'
 import { eventBus } from '@/main'
 import { mapGetters, mapMutations } from 'vuex'
 import { logout } from '@/utils/requests'
 import { BREAKPOINTS } from '@/config'
 
 export default {
+  components: {
+    UserAvatarWithName,
+  },
   data () {
     return {
       items: [

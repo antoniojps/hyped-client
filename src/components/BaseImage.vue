@@ -4,6 +4,7 @@
       v-show="loaded"
       :key="src"
       :src="image"
+      :height="height"
       @load="loaded = true"
     >
   </div>
@@ -16,6 +17,16 @@ export default {
       type: String,
       required: true,
     },
+    static: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    height: {
+      type: String,
+      default: 'auto',
+      required: false,
+    },
   },
 
   data () {
@@ -27,7 +38,8 @@ export default {
   computed: {
     image () {
       // eslint-disable-next-line
-      return require(`@/assets/imgs/${this.src}`)
+      if (!this.static) return require(`@/assets/imgs/${this.src}`)
+      return this.src
     },
   },
 }

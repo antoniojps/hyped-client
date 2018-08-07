@@ -1,5 +1,8 @@
 <template>
-  <el-button :type="type" :style="`background-color: ${costumColor}`">
+  <el-button
+    :type="type"
+    :style="`background-color: ${costumColor}`"
+  >
     <slot/>
   </el-button>
 </template>
