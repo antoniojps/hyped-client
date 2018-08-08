@@ -35,11 +35,13 @@ export default {
   },
   methods: {
     handleUserError (err) {
+      const { err: authError } = this.$route.query
       this.error = true
-      this.loadingMsg = `${err}, redirecting...`
+      if (authError !== undefined) this.loadingMsg = `${authError}, redirecting...`
+      else this.loadingMsg = `${err}, redirecting...`
       setTimeout(() => {
         this.$router.push('/')
-      }, 1000)
+      }, 2000)
     },
   },
 }
