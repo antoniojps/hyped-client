@@ -31,6 +31,7 @@
       </el-input>
       <el-button
         :loading="loading"
+        :disabled="pubgNickWarn && !isValidPubgNick"
         type="primary"
         class="modal__input--btn"
         @click="handleConfirm"
@@ -39,12 +40,11 @@
       </el-button>
     </div>
 
-    <UserPubgLogo :text="pubgLogoText"/>
+    <UserPubgLogo :text="pubgLogoText" white/>
 
     <p class="size-sm grey spacing marginTop">In order to join the games we need to connect your  PUBG account to the Hyped Arena , please make sure you enter your name exactly like it is in the game (case sensitive)</p>
 
     <el-button
-      class="discreet"
       icon="el-icon-arrow-right"
       size="mini"
       @click="openSkipModal"
@@ -62,7 +62,7 @@ import UserPubgLogo from '@/components/UserPubgLogo'
 import { queryPubgPlayerName, mutateUserPubgNickAdd } from '@/utils/requests'
 
 export default {
-  name: 'ModalPubgNick',
+  name: 'UserPubgNickModal',
   components: {
     UserPubgLogo,
   },
@@ -76,10 +76,16 @@ export default {
       loading: false,
       confirmedPubgNick: null,
       savedPubgNick: null,
+      editingPubgNick: false,
+      userPubgNick: null,
     }
   },
   computed: {
     ...mapGetters('user', ['user']),
+    redirect () {
+      if (this.editingPubgNick) return '/profile'
+      return '/'
+    },
     logoHeight () {
       if (this.breakpointMd) return '71px'
       return 'auto'
@@ -112,11 +118,13 @@ export default {
     },
     info () {
       if (this.isConfirmedPubgNick) {
+        if (this.pubgNickSuccess && this.editingPubgNick) return `Updated your PUBG Player name to ${this.confirmedPubgNick}!`
         if (this.pubgNickSuccess) return `Welcome to the Hyped Arena ${this.confirmedPubgNick}!`
         if (this.pubgNickWarn && this.isValidPubgNick) return 'We couldn’t find you, typed the name correctly?'
         if (this.pubgNickWarn && !this.isValidPubgNick) return 'Invalid PUBG name, typed the name correctly?'
         if (this.pubgNickErr) return 'Something went wrong...'
-      }
+        if (!this.pubgNickSuccess && this.editingPubgNick) return `Your current PUBG player name is ${this.userPubgNick}!`
+      } else if (this.editingPubgNick) return `Your current PUBG player name is ${this.userPubgNick}!`
       return 'Fill up your PUBG name to start playing!'
     },
     inputClassObj () {
@@ -133,16 +141,27 @@ export default {
       }
     },
   },
+  mounted () {
+    if (this.user) {
+      const { pubgNick } = this.user
+      if (pubgNick) {
+        this.pubgNick = pubgNick
+        this.confirmedPubgNick = pubgNick
+        this.userPubgNick = pubgNick
+        this.editingPubgNick = true
+      }
+    }
+  },
   methods: {
     openSkipModal () {
-      if (!this.isSavedPubgNick) {
+      if (!this.isSavedPubgNick && !this.user.pubgNick) {
         this.$confirm('You won\'t be able to join games. Continue?', {
           confirmButtonText: 'Ok',
           cancelButtonText: 'Cancel',
         })
-          .then(() => this.$router.push('/'))
+          .then(() => this.$router.push(this.redirect))
           .catch(ignore => {})
-      } else this.$router.push('/')
+      } else this.$router.push(this.redirect)
     },
     async findPubgPlayer () {
       this.loading = true
@@ -169,6 +188,7 @@ export default {
         this.savedPubgNick = pubgNick
         this.pubgNickWarn = false
         this.pubgNickSuccess = true
+        this.userPubgNick = pubgNick
         this.loading = false
       } catch (err) {
         this.confirmedPubgNick = this.pubgNick
@@ -182,17 +202,21 @@ export default {
       if (!this.isSavedPubgNick) {
         if (!this.isConfirmedPubgNick) {
           if (!this.isValidPubgNick) {
+            this.pubgNickSuccess = false
             this.pubgNickWarn = true
+            this.pubgNickErr = false
             this.confirmedPubgNick = this.pubgNick
           } else {
             const pubgNick = await this.findPubgPlayer()
             if (pubgNick) await this.userPubgNickAdd()
           }
+        } else if (!this.isValidPubgNick) {
+          this.pubgNickWarn = true
         } else {
           await this.userPubgNickAdd()
         }
       } else {
-        this.$router.push('/')
+        this.$router.push(this.redirect)
       }
     },
   },

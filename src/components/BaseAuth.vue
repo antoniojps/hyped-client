@@ -36,7 +36,7 @@ export default {
     },
   },
   mounted () {
-    if (this.redirect !== '') this.$router.push(this.redirect)
+    if (!this.hasPermissions && this.redirect !== '') this.$router.push(this.redirect)
   },
 }
 </script>

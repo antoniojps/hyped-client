@@ -10,4 +10,8 @@ fragment User on User {
     medium
     large
   }
+  providers {
+    id
+    provider
+  }
 }

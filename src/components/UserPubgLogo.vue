@@ -1,6 +1,9 @@
-<template functional>
-  <div class="user-pubg-logo">
-    <h4>{{ props.text }}</h4>
+<template>
+  <div
+    :style="`border-image: url('${borderImageSrc}') 7 stretch`"
+    class="user-pubg-logo"
+  >
+    <h4 :style="white && `color: white`">{{ text }}</h4>
   </div>
 </template>
 
@@ -12,6 +15,22 @@ export default {
       type: String,
       default: 'Pubg',
     },
+    white: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  computed: {
+    borderImageSrc () {
+      let imgName
+      if (this.white) imgName = 'user_pubg_logo_border-white'
+      else imgName = 'user_pubg_logo_border'
+      // eslint-disable-next-line
+      console.log(require(`@/assets/imgs/bg/${imgName}.svg`))
+      return require(`@/assets/imgs/bg/${
+        imgName
+      }.svg`)
+    },
   },
 }
 </script>
@@ -22,7 +41,6 @@ export default {
   border: solid $colorBgLight;
   border-width: 8px;
   border-radius: 10px;
-  border-image: url("../assets/imgs/bg/user_pubg_logo_border.svg") 7 stretch;
   display: inline-flex;
   margin:0;
   padding:0;

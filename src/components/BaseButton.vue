@@ -2,6 +2,7 @@
   <el-button
     :type="type"
     :style="`background-color: ${costumColor}`"
+    class="button"
   >
     <slot/>
   </el-button>
@@ -24,3 +25,11 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+@import '../assets/scss/styles.scss';
+
+.button {
+  padding: $spacingLSmall $spacingMSBase;
+}
+</style>

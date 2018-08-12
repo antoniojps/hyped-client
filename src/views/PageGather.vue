@@ -9,6 +9,7 @@
 <script>
 import userMixin from '@/mixins/user'
 import { eventBus } from '@/main'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Gather',
@@ -19,11 +20,18 @@ export default {
       error: false,
     }
   },
+  computed: {
+    ...mapGetters('ui', ['gatherRedirect']),
+    redirect () {
+      if (this.gatherRedirect === '/gather') return '/'
+      return this.gatherRedirect
+    },
+  },
   watch: {
     user () {
       if (this.user) {
         if (!this.user.pubgNick) setTimeout(() => { this.$router.push('/pubgnick') }, 800)
-        else setTimeout(() => { this.$router.push('/') }, 800)
+        else setTimeout(() => { this.$router.push(this.redirect) }, 800)
       }
     },
   },
@@ -35,7 +43,6 @@ export default {
   },
   methods: {
     handleUserError (err) {
-      this.error = true
       const { err: authError } = this.$route.query
       if (authError !== undefined) this.loadingMsg = `${authError}, redirecting...`
       else this.loadingMsg = `${err}, redirecting...`

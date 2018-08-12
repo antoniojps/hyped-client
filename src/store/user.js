@@ -8,6 +8,7 @@ export default {
   getters: {
     user: state => state.user,
     userLogedIn: state => !!state.user,
+    provider: state => state.user.providers[0],
   },
 
   mutations: {

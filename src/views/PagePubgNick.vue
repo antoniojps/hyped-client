@@ -1,17 +1,19 @@
 <template>
-  <BasePageFullscreen :loading-msg="loadingMsg">
-    <ModalPubgNick/>
-  </BasePageFullscreen>
+  <BaseAuth redirect="/">
+    <BasePageFullscreen :loading-msg="loadingMsg">
+      <UserPubgNickModal/>
+    </BasePageFullscreen>
+  </BaseAuth>
 </template>
 
 <script>
-import ModalPubgNick from '@/components/ModalPubgNick'
+import UserPubgNickModal from '@/components/UserPubgNickModal'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'PagePubgNick',
   components: {
-    ModalPubgNick,
+    UserPubgNickModal,
   },
   data () {
     return {

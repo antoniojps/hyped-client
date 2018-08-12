@@ -7,7 +7,7 @@
 
 <script>
 import userMixin from '@/mixins/user'
-
+import { mapMutations } from 'vuex'
 export default {
   name: 'App',
   mixins: [userMixin],
@@ -21,6 +21,13 @@ export default {
     '$route' (to, from) {
       this.currentUser()
     },
+  },
+  created () {
+    this.UPDATE_GATHER_REDIRECT(this.$route.path)
+    this.$router.push('/gather')
+  },
+  methods: {
+    ...mapMutations('ui', ['UPDATE_GATHER_REDIRECT']),
   },
 }
 </script>
