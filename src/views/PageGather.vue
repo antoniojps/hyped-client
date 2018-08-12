@@ -35,8 +35,8 @@ export default {
   },
   methods: {
     handleUserError (err) {
-      const { err: authError } = this.$route.query
       this.error = true
+      const { err: authError } = this.$route.query
       if (authError !== undefined) this.loadingMsg = `${authError}, redirecting...`
       else this.loadingMsg = `${err}, redirecting...`
       setTimeout(() => {
@@ -46,6 +46,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-</style>

@@ -1,11 +1,15 @@
 <template>
   <div :style="styleObj" class="avatar">
     <BaseImage
+      v-if="avatar"
       :src="avatar"
       :height="avatarSize"
       static
       class="avatar"
     />
+    <span v-else class="avatar__username">
+      {{ usernameMinify }}
+    </span>
   </div>
 </template>
 
@@ -38,6 +42,29 @@ export default {
         'width': this.avatarSize,
       }
     },
+    usernameMinify () {
+      const { username } = this.user
+      return username[0]
+    },
   },
 }
 </script>
+
+<style lang="scss" scoped>
+@import '../assets/scss/styles.scss';
+.avatar {
+  position:relative;
+  background-color: $colorBase4;
+  &__username {
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-transform: uppercase;
+    border-radius:$radius;
+    font-family: $fontAlternative;
+  }
+}
+</style>
