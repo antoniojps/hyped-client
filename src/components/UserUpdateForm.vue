@@ -4,9 +4,6 @@
       :model="form"
       label-position="top"
     >
-      <el-form-item label="Battlegrounds player name">
-        <UserPubgLogo :text="user.pubgNick" white/>
-      </el-form-item>
       <el-form-item label="Username">
         <el-input v-model="form.username"/>
       </el-form-item>
@@ -25,13 +22,9 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import UserPubgLogo from '@/components/UserPubgLogo.vue'
 
 export default {
   name: 'UserUpdateForm',
-  components: {
-    UserPubgLogo,
-  },
   data () {
     return {
       form: {

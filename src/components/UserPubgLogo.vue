@@ -1,6 +1,6 @@
 <template>
   <div
-    :style="`border-image: url('${borderImageSrc}') 7 stretch`"
+    :style="`border-image: url('${borderImageSrc}') 7 stretch;`"
     class="user-pubg-logo"
   >
     <h4 :style="white && `color: white`">{{ text }}</h4>
@@ -13,7 +13,7 @@ export default {
   props: {
     text: {
       type: String,
-      default: 'Pubg',
+      default: 'PUBG',
     },
     white: {
       type: Boolean,
@@ -26,7 +26,6 @@ export default {
       if (this.white) imgName = 'user_pubg_logo_border-white'
       else imgName = 'user_pubg_logo_border'
       // eslint-disable-next-line
-      console.log(require(`@/assets/imgs/bg/${imgName}.svg`))
       return require(`@/assets/imgs/bg/${
         imgName
       }.svg`)
@@ -46,8 +45,8 @@ export default {
   padding:0;
   h4 {
     padding: 0 0.3rem;
-    text-transform: uppercase;
     color: $colorBgLight;
+    text-transform: none;
     line-height: 1.4rem;
   }
 }

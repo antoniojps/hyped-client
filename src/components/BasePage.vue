@@ -41,7 +41,7 @@ export default {
         if (pubgNick) return pubgNick
         else return username
       }
-      return 'pubg'
+      return 'PUBG'
     },
   },
   created () {

@@ -1,6 +1,7 @@
 <template>
   <el-button
     :type="type"
+    :icon="icon"
     :style="`background-color: ${costumColor}`"
     class="button"
   >
@@ -18,6 +19,11 @@ export default {
       default: '',
     },
     type: {
+      type: String,
+      required: false,
+      default: '',
+    },
+    icon: {
       type: String,
       required: false,
       default: '',

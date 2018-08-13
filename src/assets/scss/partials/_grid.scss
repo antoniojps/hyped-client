@@ -127,6 +127,18 @@
   }
 }
 
+.marginRight {
+  margin: {
+    right: $spacingBase;
+  }
+}
+
+.marginLeft {
+  margin: {
+    left: $spacingBase;
+  }
+}
+
 
 .expandir {
   width:100%;

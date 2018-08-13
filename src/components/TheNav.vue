@@ -51,8 +51,7 @@
 <script>
 import UserAvatarWithName from '@/components/UserAvatarWithName.vue'
 import { eventBus } from '@/main'
-import { mapGetters, mapMutations } from 'vuex'
-import { logout } from '@/utils/requests'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 import { BREAKPOINTS } from '@/config'
 
 export default {
@@ -86,12 +85,13 @@ export default {
   },
   methods: {
     ...mapMutations('user', ['UPDATE_USER']),
+    ...mapActions('user', ['logoutUser']),
     handleSelect () {
       if (document.documentElement.clientWidth <= BREAKPOINTS.md) eventBus.$emit('nav-close')
     },
     async handleLogout () {
-      await logout()
-      this.UPDATE_USER(null)
+      await this.logoutUser()
+      this.$router.push('/')
     },
   },
 }
