@@ -116,6 +116,12 @@
   }
 }
 
+.marginBottomSmall {
+  margin: {
+    bottom:$spacingLSmall;
+  }
+}
+
 .marginTop {
   margin: {
     top:$spacingBase;
@@ -124,6 +130,12 @@
 .marginTopLarge {
   margin: {
     top:$spacingAverage;
+  }
+}
+
+.marginTopSmall {
+  margin: {
+    top:$spacingLSmall;
   }
 }
 

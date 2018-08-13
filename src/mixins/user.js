@@ -15,6 +15,9 @@ const userMixin = {
       try {
         const { data: { currentUser } } = await this.$apollo.query({ query: CURRENT_USER_QUERY, fetchPolicy: 'no-cache' })
         this.UPDATE_USER(currentUser)
+        if (currentUser === null) {
+          eventBus.$emit('user-error', 'Unathenticated')
+        }
       } catch (err) {
         eventBus.$emit('user-error', err.graphQLErrors[0].message)
         this.UPDATE_USER(null)

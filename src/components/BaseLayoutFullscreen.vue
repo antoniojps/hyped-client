@@ -1,6 +1,6 @@
 <template>
   <el-container class="container">
-    <router-view :key="$route.fullPath"/>
+    <router-view :key="$route.fullPath" class="router-fullscreen"/>
   </el-container>
 </template>
 
@@ -14,3 +14,9 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+  .router-fullscreen {
+    width: 100%;
+  }
+</style>

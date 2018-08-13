@@ -31,5 +31,8 @@ export default {
     padding-top: $spacingSmall;
     padding-right: $spacingLSmall;
   }
+  h3 {
+    margin-bottom: 0;
+  }
 }
 </style>

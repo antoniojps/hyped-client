@@ -29,7 +29,7 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/scss/styles.scss';
 body {
-  background: linear-gradient(to left, $colorBg 100%)
+  background: linear-gradient(to left, $colorBg 100%);
 }
 .page-login {
   width: 100%;
