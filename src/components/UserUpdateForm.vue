@@ -95,12 +95,12 @@ export default {
         this.currentUser()
         this.loading = false
         this.$message({
-          message: 'Congrats, this is a success message.',
+          message: 'User settings saved',
           type: 'success',
         })
       } catch (err) {
         this.$message({
-          message: 'Oops, this is a error message.',
+          message: 'Oops, something went wrong...',
           type: 'error',
         })
         this.loading = false
