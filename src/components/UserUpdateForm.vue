@@ -12,10 +12,10 @@
       <el-form-item
         v-if="providerName === 'steam'"
         label="Email"
-        prop="email"
+        prop="steamEmail"
       >
         <el-input
-          v-model="form.email"
+          v-model="form.steamEmail"
           placeholder="Your email"
         />
       </el-form-item>
@@ -47,14 +47,14 @@ export default {
     return {
       form: {
         username: '',
-        email: '',
+        steamEmail: '',
       },
       rules: {
         username: [
           { required: true, message: 'Please input an username', trigger: 'blur' },
           { min: 4, max: 16, message: 'Length should be between 4 and 16', trigger: 'blur' },
         ],
-        email: [
+        steamEmail: [
           { type: 'email', message: 'Please input a correct email address', trigger: 'blur' },
         ],
       },
@@ -74,7 +74,7 @@ export default {
   watch: {
     user () {
       this.form.username = this.user.username
-      if (this.providerName === 'steam') this.form.email = this.user.email
+      if (this.providerName === 'steam') this.form.steamEmail = this.user.steamEmail
     },
   },
   methods: {

@@ -5,6 +5,7 @@ fragment User on User {
   username
   pubgNick
   email
+  steamEmail
   avatar {
     small
     medium
