@@ -13,7 +13,7 @@ export default {
   mixins: [userMixin],
   computed: {
     isLayoutFullscreen () {
-      const fullscreenRoutes = ['/login', '/pubgnick', '/gather']
+      const fullscreenRoutes = ['/login', '/pubgnick', '/gather', '/createteam']
       return fullscreenRoutes.includes(this.$route.path)
     },
   },

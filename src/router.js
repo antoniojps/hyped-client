@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import PageHome from './views/PageHome.vue'
-import PageMyTeams from './views/PageMyTeams.vue'
+import PageTeams from './views/PageTeams.vue'
+import PageTeamsCreate from './views/PageTeamsCreate.vue'
 import PageLogin from './views/PageLogin.vue'
 import PageGather from './views/PageGather.vue'
 import PagePubgNick from './views/PagePubgNick.vue'
@@ -39,7 +40,12 @@ export default new Router({
     {
       path: '/myteams',
       name: 'myteams',
-      component: PageMyTeams,
+      component: PageTeams,
+    },
+    {
+      path: '/createteam',
+      name: 'createteam',
+      component: PageTeamsCreate,
     },
   ],
 })

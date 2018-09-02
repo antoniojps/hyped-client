@@ -1,17 +1,5 @@
 <template>
-  <div class="modal">
-
-    <div class="modal__header">
-      <BaseIcon
-        :height="logoHeight"
-        class="modal__logo"
-        src="logos/hyped_logo"
-      />
-      <div class="modal__title">
-        <h4 class="active">Hyped arena</h4>
-        <h1>Player Setup</h1>
-      </div>
-    </div>
+  <div>
 
     <p class="modal__info">{{ info }}</p>
 
@@ -57,7 +45,6 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import resizeMixin from '@/mixins/resize'
 import UserPubgLogo from '@/components/UserPubgLogo'
 import { queryPubgPlayerName, mutateUserPubgNickAdd } from '@/utils/requests'
 
@@ -66,7 +53,6 @@ export default {
   components: {
     UserPubgLogo,
   },
-  mixins: [resizeMixin],
   data () {
     return {
       pubgNick: '',
@@ -85,10 +71,6 @@ export default {
     redirect () {
       if (this.editingPubgNick) return '/profile'
       return '/'
-    },
-    logoHeight () {
-      if (this.breakpointMd) return '71px'
-      return 'auto'
     },
     pubgNickLength () {
       return this.pubgNick.split('').length
@@ -226,29 +208,6 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/scss/styles.scss';
 .modal {
-  max-width: 260px;
-  @include screen(md) {
-    max-width: 350px;
-  }
-  &__header{
-    display: flex;
-    align-items: flex-end;
-    margin-bottom: $spacingLSmall;
-    @include screen(md){
-      margin-bottom: $spacingBase;
-    }
-  }
-  &__title {
-    padding-left: $spacingAverage;
-    h1, h4 {
-      line-height: $sizeLarge;
-    }
-    @include screen(md) {
-      h1, h4 {
-        line-height: $sizeXLarge;
-      }
-    }
-  }
   &__info {
     padding-bottom: $spacingSmall;
   }

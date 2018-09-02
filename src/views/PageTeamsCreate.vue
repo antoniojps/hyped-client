@@ -1,24 +1,24 @@
 <template>
   <BaseAuth redirect="/">
     <BasePageFullscreen :loading-msg="loadingMsg">
-      <BaseLayoutFullscreenTitle title="Player Setup">
-        <UserPubgNickModal/>
+      <BaseLayoutFullscreenTitle title="Create team">
+        <FormPhotoUpload/>
       </BaseLayoutFullscreenTitle>
     </BasePageFullscreen>
   </BaseAuth>
 </template>
 
 <script>
-import UserPubgNickModal from '@/components/UserPubgNickModal'
+import FormPhotoUpload from '@/components/FormPhotoUpload.vue'
 
 export default {
-  name: 'PagePubgNick',
+  name: 'PageTeamsCreate',
   components: {
-    UserPubgNickModal,
+    FormPhotoUpload,
   },
   data () {
     return {
-      loadingMsg: 'This package is waiting for you!',
+      loadingMsg: 'New team, new chicken dinner!',
     }
   },
 }

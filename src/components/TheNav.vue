@@ -66,16 +66,12 @@ export default {
           text: 'Home',
         },
         {
-          link: '/events',
-          text: 'Events',
-        },
-        {
-          link: '/scrims',
-          text: 'Scrims',
-        },
-        {
           link: '/myteams',
           text: 'My teams',
+        },
+        {
+          link: '/events',
+          text: 'Events',
         },
       ],
     }
