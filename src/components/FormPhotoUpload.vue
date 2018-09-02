@@ -17,6 +17,7 @@
         :disabled="disabled"
         class="file-photo"
         type="file"
+        accept="image/x-png,image/png"
         @change="handleImage"
         @dragenter="hovering = true"
         @dragleave="hovering = false"
@@ -26,6 +27,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   props: {
     value: {
@@ -36,12 +38,19 @@ export default {
       type: Boolean,
       default: false,
     },
+    folder: {
+      type: String,
+      default: 'teams',
+    },
   },
   data () {
     return {
       hovering: false,
       preview: null,
       uploadReady: true,
+      uploadPresets: {
+        teams: 'lnwgzz9o',
+      },
     }
   },
   computed: {
@@ -57,15 +66,17 @@ export default {
       if (this.hasImage) return 'el-icon-delete'
       return 'el-icon-plus'
     },
+    uploadPreset () {
+      return this.uploadPresets[this.folder]
+    },
   },
   methods: {
     isValidImage (file) {
-      const isJPG = file.type === 'image/jpeg'
       const isPNG = file.type === 'image/png'
-      const isValidFormat = isJPG || isPNG
+      const isValidFormat = isPNG
       const isLt2M = file.size / 1024 / 1024 < 1
 
-      if (!isValidFormat) this.$message.error('Logo must be JPG or PNG format!')
+      if (!isValidFormat) this.$message.error('Logo must be PNG format!')
       if (!isLt2M) this.$message.error('Logo size can not exceed 1MB!')
       return isValidFormat && isLt2M
     },
@@ -83,20 +94,28 @@ export default {
       let reader = new FileReader()
       reader.onload = (event) => {
         this.preview = event.target.result
-        this.$emit('input', files[0])
         this.upload(files[0])
       }
       reader.readAsDataURL(files[0])
     },
-    upload (file) {
-      // todo file upload to cloudinary and v-model
-      console.log('upload file')
+    async upload (file) {
+      const formData = new FormData()
+      formData.append('file', file)
+      formData.append('upload_preset', this.uploadPreset)
+
+      const response = await axios.post(
+        'https://api.cloudinary.com/v1_1/antoniojps/image/upload',
+        formData
+      )
+      const imageUrl = response.data.secure_url
+      this.$emit('input', imageUrl)
     },
     clear () {
       this.uploadReady = false
       this.$nextTick(() => {
         this.uploadReady = true
         this.preview = null
+        this.$emit('input', null)
         this.$message('Logo deleted')
       })
     },

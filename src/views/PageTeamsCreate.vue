@@ -2,7 +2,7 @@
   <BaseAuth redirect="/">
     <BasePageFullscreen :loading-msg="loadingMsg">
       <BaseLayoutFullscreenTitle title="Create team">
-        <FormPhotoUpload/>
+        <FormPhotoUpload v-model="imageUrl"/>
       </BaseLayoutFullscreenTitle>
     </BasePageFullscreen>
   </BaseAuth>
@@ -19,6 +19,7 @@ export default {
   data () {
     return {
       loadingMsg: 'New team, new chicken dinner!',
+      imageUrl: null,
     }
   },
 }
