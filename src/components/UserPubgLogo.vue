@@ -1,6 +1,6 @@
 <template>
   <div
-    :style="`border-image: url('${borderImageSrc}') 7 stretch;`"
+    :style="`border-image: url('${borderImageSrc}') 7 stretch;`+ (team && teamStyle)"
     class="user-pubg-logo"
   >
     <h4 :style="white && `color: white`">{{ text }}</h4>
@@ -19,6 +19,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    team: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     borderImageSrc () {
@@ -29,6 +33,9 @@ export default {
       return require(`@/assets/imgs/bg/${
         imgName
       }.svg`)
+    },
+    teamStyle () {
+      return 'height: 60px; min-width: 60px;'
     },
   },
 }
@@ -43,11 +50,14 @@ export default {
   display: inline-flex;
   margin:0;
   padding:0;
+  align-items: center;
   h4 {
     padding: 0 0.3rem;
     color: $colorBgLight;
     text-transform: none;
     line-height: 1.4rem;
+    width: 100%;
+    text-align: center;
   }
 }
 </style>

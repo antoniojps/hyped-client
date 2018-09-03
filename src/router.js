@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import PageHome from './views/PageHome.vue'
 import PageTeams from './views/PageTeams.vue'
-import PageTeamsCreate from './views/PageTeamsCreate.vue'
+import PageTeamCreate from './views/PageTeamCreate.vue'
 import PageLogin from './views/PageLogin.vue'
 import PageGather from './views/PageGather.vue'
 import PagePubgNick from './views/PagePubgNick.vue'
@@ -38,14 +38,14 @@ export default new Router({
       component: PageProfile,
     },
     {
-      path: '/myteams',
-      name: 'myteams',
+      path: '/teams',
+      name: 'teams',
       component: PageTeams,
     },
     {
       path: '/createteam',
       name: 'createteam',
-      component: PageTeamsCreate,
+      component: PageTeamCreate,
     },
   ],
 })

@@ -48,6 +48,7 @@ export default {
       hovering: false,
       preview: null,
       uploadReady: true,
+      url: null,
       uploadPresets: {
         teams: 'lnwgzz9o',
       },
@@ -68,6 +69,12 @@ export default {
     },
     uploadPreset () {
       return this.uploadPresets[this.folder]
+    },
+    urlSmallSize () {
+      if (!this.url) return null
+      const url = this.url.split('upload')
+      url.splice(1, 0, 'upload/w_60,h_60')
+      return url.join('')
     },
   },
   methods: {
@@ -102,20 +109,24 @@ export default {
       const formData = new FormData()
       formData.append('file', file)
       formData.append('upload_preset', this.uploadPreset)
-
-      const response = await axios.post(
-        'https://api.cloudinary.com/v1_1/antoniojps/image/upload',
-        formData
-      )
-      const imageUrl = response.data.secure_url
-      this.$message.success('Logo uploaded')
-      this.$emit('input', imageUrl)
+      try {
+        const response = await axios.post(
+          'https://api.cloudinary.com/v1_1/antoniojps/image/upload',
+          formData
+        )
+        this.url = response.data.secure_url
+        this.$message.success('Logo uploaded')
+        this.$emit('input', this.urlSmallSize)
+      } catch (e) {
+        this.$message.error('Error uploading logo')
+      }
     },
     clear () {
       this.uploadReady = false
       this.$nextTick(() => {
         this.uploadReady = true
         this.preview = null
+        this.url = null
         this.$emit('input', null)
         this.$message('Logo deleted')
       })

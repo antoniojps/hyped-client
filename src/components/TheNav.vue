@@ -66,7 +66,7 @@ export default {
           text: 'Home',
         },
         {
-          link: '/myteams',
+          link: '/teams',
           text: 'My teams',
         },
         {

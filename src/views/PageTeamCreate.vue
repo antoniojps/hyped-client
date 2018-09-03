@@ -2,19 +2,19 @@
   <BaseAuth redirect="/">
     <BasePageFullscreen :loading-msg="loadingMsg">
       <BaseLayoutFullscreenTitle title="Create team">
-        <TeamsCreateModal/>
+        <TeamCreateModal/>
       </BaseLayoutFullscreenTitle>
     </BasePageFullscreen>
   </BaseAuth>
 </template>
 
 <script>
-import TeamsCreateModal from '@/components/TeamsCreateModal.vue'
+import TeamCreateModal from '@/components/TeamCreateModal.vue'
 
 export default {
-  name: 'PageTeamsCreate',
+  name: 'PageTeamCreate',
   components: {
-    TeamsCreateModal,
+    TeamCreateModal,
   },
   data () {
     return {

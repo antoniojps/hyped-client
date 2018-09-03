@@ -3,6 +3,7 @@ import { ENDPOINT } from '@/config'
 import PUBG_PLAYER_QUERY from '../graphql/PubgPlayerName.gql'
 import USER_PUBGNICK_ADD_MUTATION from '../graphql/UserPubgNickAdd.gql'
 import USER_UPDATE_MUTATION from '../graphql/UserUpdate.gql'
+import TEAM_ADD_MUTATION from '../graphql/TeamAdd.gql'
 
 const ax = axios.create({
   baseURL: ENDPOINT,
@@ -36,6 +37,15 @@ export function mutateUserUpdate (apolloClient, userId, input) {
     mutation: USER_UPDATE_MUTATION,
     variables: {
       userId,
+      input,
+    },
+  })
+}
+
+export function mutateTeamAdd (apolloClient, input) {
+  return apolloClient.mutate({
+    mutation: TEAM_ADD_MUTATION,
+    variables: {
       input,
     },
   })
