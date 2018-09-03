@@ -40,9 +40,9 @@ export default {
 <style lang="scss">
 @import '../assets/scss/styles.scss';
 .modal {
-  max-width: 260px;
   @include screen(md) {
     max-width: 350px;
+    margin:auto !important;
   }
   &__header{
     display: flex;

@@ -1,6 +1,5 @@
 <template>
   <div class="login-modal">
-    <h1>Login</h1>
     <ul>
       <li
         v-for="provider in providers"
@@ -10,7 +9,7 @@
       >
         <BaseIcon :src="provider.icon" class="paddingRight"/>
         <BaseButton :type="provider.btnType" :costum-color="provider.btnColor">
-          Login with
+          Continue with
           <b>{{ provider.name }}</b>
         </BaseButton>
       </li>
@@ -53,7 +52,9 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/scss/styles.scss';
 .login-modal {
-  max-width: 260px;
+  @include screen(md) {
+    max-width: 260px;
+  }
   h1 {
     margin-bottom: $spacingLSmall;
     @include screen(sm){

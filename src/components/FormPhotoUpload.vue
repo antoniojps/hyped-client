@@ -108,6 +108,7 @@ export default {
         formData
       )
       const imageUrl = response.data.secure_url
+      this.$message.success('Logo uploaded')
       this.$emit('input', imageUrl)
     },
     clear () {

@@ -115,8 +115,6 @@ body {
 
   &__wrapper {
     display: flex;
-    align-items: center;
-    justify-content: center;
     width: 100%;
     height: 100%;
     position:relative;
@@ -125,12 +123,10 @@ body {
     width: 100%;
     height: 100%;
     display: flex;
-    position:absolute;
     background: linear-gradient(to left, $colorBgDark 100%);
     left:0;
     top:0;
-    align-items: center;
-    justify-content: center;
+    padding: $spacingXSBase $spacingSBase;
     @include screen(sm){
       width: 60%;
     }
@@ -138,10 +134,9 @@ body {
   &__rgt {
     width: 100%;
     height: 100%;
-    position:relative;
+    position:fixed;
     background-color: $colorBg;
     display:none;
-    position:absolute;
     right:0;
     top:0;
     @include screen(sm){

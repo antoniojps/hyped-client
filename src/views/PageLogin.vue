@@ -1,6 +1,8 @@
 <template>
   <BasePageFullscreen :loading-msg="loadingMsg" :anim-reveal="false">
-    <UserLoginModal @before-login="redirectProvider"/>
+    <BaseLayoutFullscreenTitle title="Login">
+      <UserLoginModal @before-login="redirectProvider"/>
+    </BaseLayoutFullscreenTitle>
   </BasePageFullscreen>
 </template>
 

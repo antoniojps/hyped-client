@@ -9,20 +9,32 @@
         <h3>Settings</h3>
         <UserUpdateForm/>
 
-        <h3>Player setup</h3>
+        <h3>PUBG Player name</h3>
         <div class="user-pubgnick">
-          <UserPubgLogo
-            v-if="user"
-            :text="user.pubgNick"
-            white
-          />
-          <router-link to="/pubgnick">
-            <BaseButton
-              class="marginBottom marginLeft"
-              icon="el-icon-edit"
-              size="mini"
+          <div v-if="user.pubgNick">
+            <UserPubgLogo
+              v-if="user"
+              :text="user.pubgNick"
+              white
             />
-          </router-link>
+            <router-link to="/pubgnick">
+              <BaseButton
+                class="marginBottom marginLeft"
+                icon="el-icon-edit"
+                size="mini"
+              />
+            </router-link>
+          </div>
+          <div v-else>
+            <router-link to="/pubgnick">
+              <BaseButton
+                class="marginBottom"
+                size="mini"
+              >
+                Setup player
+              </BaseButton>
+            </router-link>
+          </div>
         </div>
 
         <h3>Provider</h3>

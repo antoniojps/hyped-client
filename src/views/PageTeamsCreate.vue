@@ -2,24 +2,23 @@
   <BaseAuth redirect="/">
     <BasePageFullscreen :loading-msg="loadingMsg">
       <BaseLayoutFullscreenTitle title="Create team">
-        <FormPhotoUpload v-model="imageUrl"/>
+        <TeamsCreateModal/>
       </BaseLayoutFullscreenTitle>
     </BasePageFullscreen>
   </BaseAuth>
 </template>
 
 <script>
-import FormPhotoUpload from '@/components/FormPhotoUpload.vue'
+import TeamsCreateModal from '@/components/TeamsCreateModal.vue'
 
 export default {
   name: 'PageTeamsCreate',
   components: {
-    FormPhotoUpload,
+    TeamsCreateModal,
   },
   data () {
     return {
       loadingMsg: 'New team, new chicken dinner!',
-      imageUrl: null,
     }
   },
 }
