@@ -18,6 +18,11 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'UserAvatar',
   props: {
+    url: {
+      type: String,
+      required: false,
+      default: null,
+    },
     size: {
       type: String,
       required: false,
@@ -27,7 +32,7 @@ export default {
   computed: {
     ...mapGetters('user', ['user']),
     avatar () {
-      if (this.user && this.user.avatar) return this.user.avatar[this.size]
+      if (this.url) return this.url
       return false
     },
     avatarSize () {

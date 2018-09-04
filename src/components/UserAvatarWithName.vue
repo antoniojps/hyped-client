@@ -1,6 +1,6 @@
 <template>
   <div class="user-avatar">
-    <UserAvatar size="small"/>
+    <UserAvatar :url="userAvatarUrl" size="small"/>
     <div class="user-avatar__name">
       {{ user.username }}
     </div>
@@ -17,6 +17,10 @@ export default {
   },
   computed: {
     ...mapGetters('user', ['user']),
+    userAvatarUrl () {
+      if (this.user && this.user.avatar) return this.user.avatar.small
+      return null
+    },
   },
 }
 </script>

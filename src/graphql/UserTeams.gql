@@ -1,0 +1,9 @@
+#import "./TeamFragment.gql"
+
+query currentUser {
+  currentUser {
+    teams {
+			...Team
+		}
+  }
+}

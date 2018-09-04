@@ -140,7 +140,6 @@ export default {
       }
     },
     redirect () {
-      console.log('why not redirect')
       this.$router.push('/teams')
     },
     goBack () {

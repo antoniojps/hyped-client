@@ -34,7 +34,11 @@ body {
 }
 
 #app {
-  height:100%;
+  height: 100%;
+  @include screen(md) {
+    height: auto;
+  }
+  min-height: 100%;
 }
 
 hr {
