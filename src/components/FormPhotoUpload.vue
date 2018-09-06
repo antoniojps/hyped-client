@@ -73,7 +73,7 @@ export default {
     urlSmallSize () {
       if (!this.url) return null
       const url = this.url.split('upload')
-      url.splice(1, 0, 'upload/w_60,h_60')
+      url.splice(1, 0, 'upload/w_60')
       return url.join('')
     },
   },

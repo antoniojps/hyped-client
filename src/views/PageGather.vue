@@ -47,7 +47,7 @@ export default {
       if (authError !== undefined) this.loadingMsg = `${authError}, redirecting...`
       else this.loadingMsg = `${err}, redirecting...`
       setTimeout(() => {
-        this.$router.push('/')
+        this.$router.push(this.redirect)
       }, 2000)
     },
   },

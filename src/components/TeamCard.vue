@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="team__rgt">
-        <div v-if="id" class="team__actions">
+        <div v-if="id && link" class="team__actions">
           <router-link
             :to="teamRoute"
             tag="div"
@@ -72,7 +72,12 @@ export default {
     roster: {
       type: Array,
       required: false,
-      default: null,
+      default: () => ([]),
+    },
+    link: {
+      type: Boolean,
+      required: false,
+      default: true,
     },
   },
   data () {
@@ -82,11 +87,13 @@ export default {
   },
   computed: {
     teamRoute () {
-      return `/teams/${this.id}`
+      return `/team/${this.id}`
     },
   },
   methods: {
     handleClickTeam () {
+      // eslint-disable-next-line
+      if (!this.roster || this.roster.length === 0) return;
       this.showRoster = !this.showRoster
     },
   },
@@ -97,8 +104,8 @@ export default {
 @import '../assets/scss/styles.scss';
 
 .team {
-  border: $sizeXSmall/2 solid $colorBgLight;
   border-radius: $sizeXSmall;
+  background-color: $colorBgDark;
   &__wrapper {
     cursor: pointer;
     display:flex;
@@ -120,11 +127,14 @@ export default {
     padding-right: $spacingLSmall;
   }
   &__logo {
-    width: 60px;
     height: 60px;
+    display:flex;
+    align-items: center;
     margin-right: $spacingLSmall;
   }
   &__roster {
+    border-bottom-left-radius: $radius;
+    border-bottom-right-radius: $radius;
     background-color: $colorBase4;
     color: $colorBase;
   }

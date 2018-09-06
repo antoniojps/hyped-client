@@ -1,0 +1,19 @@
+query team($teamId: ID!) {
+  team(teamId: $teamId) {
+    _id
+    name
+    shortname
+    logo
+    roster {
+      role
+      user {
+        _id
+        username
+        pubgNick
+        avatar {
+					medium
+				}
+      }
+    }
+  }
+}

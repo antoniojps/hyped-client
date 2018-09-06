@@ -75,7 +75,7 @@ export default {
   padding: $spacingXSBase $spacingSBase;
   padding-right: 27%;
   width: 100% !important;
-  height: 100%;
+  height: 100vh;
   position: absolute;
   @include screen(md) {
     padding: $spacingLarge;

@@ -9,7 +9,13 @@
         />
         <slot name="header"/>
       </div>
-      <UserPubgLogo :text="pubgLogoName"/>
+      <UserPubgLogo
+        :text="pubgLogoName"
+        class="desktop"
+      />
+    </div>
+    <div class="page-actions">
+      <slot name="actions"/>
     </div>
     <slot/>
   </div>
@@ -72,18 +78,37 @@ export default {
   @import '../assets/scss/styles.scss';
   .page {
     height:100%;
-  }
-  .page-header {
+    &-header {
     display:flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: $spacingBase;
-    &__mobile-nav {
-      cursor: pointer;
-      padding-right: 1rem;
-      display: flex;
+    margin-bottom: $spacingLSmall;
+    @include screen(md) {
+      margin-bottom: $spacingBase;
+    }
+      &__mobile-nav {
+        cursor: pointer;
+        padding-right: 1rem;
+        display: flex;
+        @include screen(md) {
+          display: none;
+        }
+      }
+    }
+    &-actions {
+      display:flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      button, div {
+        margin-left:0;
+        margin-top: $spacingLSmall;
+      }
       @include screen(md) {
-        display: none;
+        flex-direction: row;
+        button, div {
+          margin-right: $spacingBase;
+          margin-top: $spacingSmall;
+        }
       }
     }
   }

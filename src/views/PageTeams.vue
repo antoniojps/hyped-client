@@ -5,11 +5,10 @@
       <h1>My teams</h1>
     </template>
 
-    <div class="page-actions">
+    <template slot="actions">
       <router-link
         tag="div"
-        class="marginRight"
-        to="/createteam"
+        to="/teams/create"
       >
         <BaseButton>
           Create Team
@@ -19,7 +18,7 @@
       <BaseButton>
         Join Team
       </BaseButton>
-    </div>
+    </template>
 
     <ApolloQuery
       :query="require('@/graphql/UserTeams.gql')"
@@ -74,11 +73,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-  .page {
-    &-actions {
-      display:flex;
-    }
-  }
-</style>
