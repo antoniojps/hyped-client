@@ -49,7 +49,15 @@
             class="marginVertBase"
           />
 
+          <h3>Stats</h3>
           <TeamStats :stats="stats"/>
+
+          <div class="marginVertBase">
+            <h3>Roster</h3>
+            <div class="container-dark">
+              <TeamRoster :roster="data.team.roster"/>
+            </div>
+          </div>
 
           <div v-if="data.team === null" class="marginVertBase">
             <BaseError large text="This team doesnt exist"/>
@@ -70,7 +78,8 @@
 <script>
 import TeamCard from '@/components/TeamCard.vue'
 import TeamCaptain from '@/components/TeamCaptain.vue'
-import TeamStats from '@/components/CardStats.vue'
+import TeamStats from '@/components/CardStatsList.vue'
+import TeamRoster from '@/components/TeamRoster.vue'
 
 export default {
   name: 'PageTeam',
@@ -78,6 +87,7 @@ export default {
     TeamCard,
     TeamCaptain,
     TeamStats,
+    TeamRoster,
   },
   data () {
     return {

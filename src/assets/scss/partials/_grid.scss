@@ -180,6 +180,11 @@
   }
 }
 
+.container-dark {
+  background-color: $colorBgDark;
+  border-radius: $radius;
+}
+
 .flex {
   display:flex;
   justify-content:center;
