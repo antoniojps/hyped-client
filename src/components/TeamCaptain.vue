@@ -18,6 +18,7 @@ export default {
 @import '../assets/scss/styles.scss';
   .team {
     &__captain {
+      height: 100%;
       display:flex;
       align-items: center;
       margin-left: $spacingLSmall;

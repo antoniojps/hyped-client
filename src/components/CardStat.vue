@@ -21,7 +21,7 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/scss/styles.scss';
 .card-stat {
-  padding: $spacingMSmall $spacingLSmall;
+  padding: $spacingLSmall $spacingMSBase;
   background-color: $colorBgDark;
   border-radius: $radius;
   h3 {
