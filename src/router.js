@@ -49,7 +49,7 @@ export default new Router({
       component: PageTeamCreate,
     },
     {
-      path: '/team/:id',
+      path: '/team/:name',
       name: 'team',
       component: PageTeam,
     },

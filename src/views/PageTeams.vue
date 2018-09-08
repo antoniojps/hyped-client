@@ -27,7 +27,7 @@
       <template slot-scope="{ result: { loading, error, data } }">
         <!-- Loading -->
         <div v-if="loading">
-          <BaseLoading/>
+          <BaseLineLoading/>
         </div>
 
         <!-- Error -->
@@ -45,7 +45,7 @@
             :shortname="team.shortname"
             :logo="team.logo"
             :roster="team.roster"
-            class="marginVertBase"
+            class="marginVertBase pointer"
           />
           <div v-if="data.currentUser.teams.length === 0" class="marginVertBase">
             <BaseError large text="You don't have any teams yet"/>

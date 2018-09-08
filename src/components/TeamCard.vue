@@ -86,8 +86,12 @@ export default {
     }
   },
   computed: {
+    nameToHyphenAndLowerCase () {
+      const newName = this.name.replace(/\s+/g, '-').toLowerCase()
+      return newName
+    },
     teamRoute () {
-      return `/team/${this.id}`
+      return `/team/${this.nameToHyphenAndLowerCase}`
     },
   },
   methods: {
@@ -107,7 +111,6 @@ export default {
   border-radius: $sizeXSmall;
   background-color: $colorBgDark;
   &__wrapper {
-    cursor: pointer;
     display:flex;
     justify-content: space-between;
     padding: $spacingLSmall $spacingMSBase;

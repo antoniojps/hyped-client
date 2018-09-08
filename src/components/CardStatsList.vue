@@ -19,7 +19,8 @@ export default {
   props: {
     stats: {
       type: Object,
-      required: true,
+      required: false,
+      default: () => ({}),
     },
   },
   data () {
@@ -42,9 +43,13 @@ export default {
     generateStatsArr () {
       const statsArr = Object.keys(this.stats).map(key => ({
         description: this.statsDescriptions[key],
-        value: this.stats[key],
+        value: this.generateStatValue(this.stats[key]),
       }))
       this.statsArr = statsArr
+    },
+    generateStatValue (value) {
+      if (!value) return '-'
+      return value
     },
   },
 }

@@ -1,0 +1,19 @@
+query teamByName($name: String!) {
+  teamByName(name: $name) {
+    _id
+    name
+    shortname
+    logo
+    roster {
+      role
+      user {
+        _id
+        username
+        pubgNick
+        avatar {
+					medium
+				}
+      }
+    }
+  }
+}

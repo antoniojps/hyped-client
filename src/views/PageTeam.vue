@@ -21,6 +21,7 @@
         v-if="team"
         :roster="team.roster"
         :user-id="user._id"
+        class="marginBottom"
       >
         <BaseButton>
           Manage team
@@ -36,42 +37,44 @@
       </TeamAuthCaptain>
     </template>
 
-    <!-- Loading -->
-    <div v-if="loading">
-      <BaseLoading/>
-    </div>
+    <transition name="el-fade-in">
 
-    <!-- Result -->
-    <div v-else-if="team">
+      <!-- Loading -->
+      <div v-if="loading">
+        <BaseLineLoading/>
+      </div>
 
-      <TeamCard
-        :id="team._id"
-        :name="team.name"
-        :shortname="team.shortname"
-        :logo="team.logo"
-        :link="false"
-        class="marginBottom"
-      />
+      <!-- Result -->
+      <div v-else-if="team">
+        <TeamCard
+          :id="team._id"
+          :name="team.name"
+          :shortname="team.shortname"
+          :logo="team.logo"
+          :link="false"
+          class="marginBottom"
+        />
 
-      <h3>Stats</h3>
-      <TeamStats :stats="stats" class="marginBottom"/>
+        <h3>Stats</h3>
+        <TeamStats :stats="stats" class="marginBottom"/>
 
-      <div class="marginBottom">
-        <h3>Roster</h3>
-        <div class="container-dark">
-          <TeamRoster :roster="team.roster"/>
+        <div class="marginBottom">
+          <h3>Roster</h3>
+          <div class="container-dark">
+            <TeamRoster :roster="team.roster"/>
+          </div>
+        </div>
+
+        <div v-if="team === null" class="marginBottom">
+          <BaseError large text="This team doesnt exist"/>
         </div>
       </div>
 
-      <div v-if="team === null" class="marginBottom">
-        <BaseError large text="This team doesnt exist"/>
+      <!-- No result -->
+      <div v-else class="no-result apollo">
+        <BaseError large text="No result"/>
       </div>
-    </div>
-
-    <!-- No result -->
-    <div v-else class="no-result apollo">
-      <BaseError large text="No result"/>
-    </div>
+    </transition>
 
   </BasePage>
 </template>
@@ -82,8 +85,9 @@ import TeamCaptain from '@/components/TeamCaptain.vue'
 import TeamStats from '@/components/CardStatsList.vue'
 import TeamRoster from '@/components/TeamRoster.vue'
 import TeamAuthCaptain from '@/components/TeamAuthCaptain.vue'
+import TeamInvite from '@/components/TeamInvite.vue'
 import { mapGetters } from 'vuex'
-import TEAM_QUERY from '@/graphql/Team.gql'
+import TEAM_BY_NAME_QUERY from '@/graphql/TeamByName.gql'
 
 export default {
   name: 'PageTeam',
@@ -93,35 +97,41 @@ export default {
     TeamStats,
     TeamRoster,
     TeamAuthCaptain,
+    TeamInvite,
   },
   data () {
     return {
-      team: null,
+      teamByName: null,
       stats: {
-        matches: 28,
-        avgPlacement: 6,
-        winRate: 16.42,
-        top10Rate: 77.61,
-        avgKills: 8,
-        avgDamage: 983,
+        matches: null,
+        avgPlacement: null,
+        winRate: null,
+        top10Rate: null,
+        avgKills: null,
+        avgDamage: null,
       },
     }
   },
   computed: {
     ...mapGetters('user', ['user']),
-    teamId () {
-      return this.$route.params.id
+    name () {
+      // replace hyphen with spaces
+      const nameParam = this.$route.params.name
+      return nameParam.replace(/-/g, ' ')
     },
     loading () {
       return this.$apollo.loading
     },
+    team () {
+      return this.teamByName
+    },
   },
   apollo: {
-    team () {
+    teamByName () {
       return {
-        query: TEAM_QUERY,
+        query: TEAM_BY_NAME_QUERY,
         variables: {
-          teamId: this.teamId,
+          name: this.name,
         },
         fetchPolicy: 'cache-and-network',
       }
