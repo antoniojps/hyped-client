@@ -1,0 +1,5 @@
+query teamInviteToken($teamId: ID!) {
+  teamInviteToken(teamId: $teamId) {
+    token
+  }
+}

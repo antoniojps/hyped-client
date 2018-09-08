@@ -1,5 +1,5 @@
 <template>
-  <BaseAuth redirect="/">
+  <BaseAuth redirect="/login">
     <BasePageFullscreen :loading-msg="loadingMsg">
       <BaseLayoutFullscreenTitle title="Player Setup">
         <UserPubgNickModal/>

@@ -1,5 +1,5 @@
 <template>
-  <BaseAuth redirect="/">
+  <BaseAuth redirect="/login">
     <BasePageFullscreen :loading-msg="loadingMsg" :anim-reveal="false">
       <BaseLayoutFullscreenTitle title="Create team">
         <TeamCreateModal/>

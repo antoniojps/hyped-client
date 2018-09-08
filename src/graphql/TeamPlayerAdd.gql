@@ -1,0 +1,7 @@
+#import "./TeamFragment.gql"
+
+mutation teamPlayerAdd($token: String!) {
+  teamPlayerAdd(token: $token) {
+		...Team
+  }
+}

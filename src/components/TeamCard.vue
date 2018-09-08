@@ -11,8 +11,15 @@
         <div class="team__name">
           <h4>{{ name }}</h4>
         </div>
-        <div class="team__shortname">
+        <div class="team__shortname flex">
           <TeamShortname :shortname="shortname"/>
+          <TeamAuthCaptain
+            v-if="user"
+            :roster="roster"
+            :user-id="user._id"
+          >
+            <TeamCaptain logo-only title="Captain"/>
+          </TeamAuthCaptain>
         </div>
       </div>
       <div class="team__rgt">
@@ -42,6 +49,9 @@
 import TeamShortname from '@/components/TeamShortname.vue'
 import TeamLogo from '@/components/TeamLogo.vue'
 import TeamRoster from '@/components/TeamRoster.vue'
+import TeamCaptain from '@/components/TeamCaptain.vue'
+import TeamAuthCaptain from '@/components/TeamAuthCaptain.vue'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'TeamCard',
@@ -49,6 +59,8 @@ export default {
     TeamShortname,
     TeamLogo,
     TeamRoster,
+    TeamCaptain,
+    TeamAuthCaptain,
   },
   props: {
     id: {
@@ -86,6 +98,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('user', ['user']),
     nameToHyphenAndLowerCase () {
       const newName = this.name.replace(/\s+/g, '-').toLowerCase()
       return newName

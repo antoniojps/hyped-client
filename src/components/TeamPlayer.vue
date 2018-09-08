@@ -5,7 +5,14 @@
     </div>
     <div class="player__info">
       <div class="player__username">
-        <h5>{{ user.username }}</h5>
+        <h5>{{ user.username }}
+          <BaseIcon
+            v-if="isCaptain"
+            class="player__icon"
+            height="10"
+            src="mix/helmet3"
+          />
+        </h5>
       </div>
       <div class="player__pubgNick">
         <BaseIcon
@@ -39,6 +46,9 @@ export default {
     avatar () {
       return this.user.avatar.medium
     },
+    isCaptain () {
+      return this.player.role === 'captain'
+    },
   },
 }
 </script>
@@ -62,6 +72,9 @@ export default {
     p {
       padding-left: $spacingSmall;
     }
+  }
+  &__icon {
+    margin-left: $spacingSmall;
   }
 }
 </style>

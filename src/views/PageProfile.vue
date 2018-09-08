@@ -1,5 +1,5 @@
 <template>
-  <BaseAuth redirect="/">
+  <BaseAuth redirect="/login">
     <BasePage>
       <template slot="header">
         <h1>Profile</h1>

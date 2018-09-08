@@ -4,13 +4,20 @@
       height="16"
       src="mix/helmet3"
     />
-    <p>Captain</p>
+    <p v-if="!logoOnly">Captain</p>
   </div>
 </template>
 
 <script>
 export default {
   name: 'TeamCaptain',
+  props: {
+    logoOnly: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+  },
 }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <el-button
-    :type="type"
+    :type="typefromActive"
     :icon="icon"
     :size="size"
     :style="`background-color: ${costumColor}`"
@@ -33,6 +33,17 @@ export default {
       type: String,
       required: false,
       default: '',
+    },
+    active: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+  },
+  computed: {
+    typefromActive () {
+      if (this.active) return 'primary'
+      return this.type
     },
   },
 }

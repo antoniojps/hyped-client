@@ -30,10 +30,19 @@
         :key="item.link"
         :to="item.link"
         class="nav__item"
-        tag="div"
+        tag="span"
         @click.native="handleSelect"
       >
         <BaseButton>{{ item.text }}</BaseButton>
+      </router-link>
+
+      <router-link
+        v-if="user"
+        to="/teams"
+        class="nav__item"
+        tag="div"
+      >
+        <BaseButton>My Teams</BaseButton>
       </router-link>
     </div>
     <div class="nav__bottom">
@@ -64,10 +73,6 @@ export default {
         {
           link: '/',
           text: 'Home',
-        },
-        {
-          link: '/teams',
-          text: 'My teams',
         },
         {
           link: '/events',

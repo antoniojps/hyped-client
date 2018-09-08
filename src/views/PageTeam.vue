@@ -23,16 +23,11 @@
         :user-id="user._id"
         class="marginBottom"
       >
-        <BaseButton>
-          Manage team
-        </BaseButton>
-
-        <BaseButton>
+        <BaseButton
+          :active="showInvite"
+          @click.native="showInvite = !showInvite"
+        >
           Invite player
-        </BaseButton>
-
-        <BaseButton>
-          Edit team
         </BaseButton>
       </TeamAuthCaptain>
     </template>
@@ -55,8 +50,23 @@
           class="marginBottom"
         />
 
-        <h3>Stats</h3>
-        <TeamStats :stats="stats" class="marginBottom"/>
+        <el-collapse-transition>
+          <div v-if="showInvite">
+            <h3>Invite player</h3>
+            <p>The invite code is valid for 24 hours and can be redeemed at the
+              <router-link to="/teams">
+                My Teams
+              </router-link>
+              page by clicking in Join Team.
+            </p>
+            <TeamInvite :team-id="team._id" class="marginBottom"/>
+          </div>
+        </el-collapse-transition>
+
+        <span>
+          <h3>Stats</h3>
+          <TeamStats :stats="stats" class="marginBottom"/>
+        </span>
 
         <div class="marginBottom">
           <h3>Roster</h3>
@@ -110,6 +120,7 @@ export default {
         avgKills: null,
         avgDamage: null,
       },
+      showInvite: false,
     }
   },
   computed: {
