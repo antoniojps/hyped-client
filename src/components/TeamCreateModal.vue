@@ -72,6 +72,7 @@
 import FormPhotoUpload from '@/components/FormPhotoUpload.vue'
 import TeamCard from '@/components/TeamCard.vue'
 import { mutateTeamAdd } from '@/utils/requests'
+import { regexTeamName } from '@/utils/constants'
 
 export default {
   name: 'TeamCreateModal',
@@ -95,6 +96,7 @@ export default {
         name: [
           { required: true, message: 'Please input a name', trigger: 'blur' },
           { min: 2, max: 25, message: 'Length should be between 2 and 25', trigger: 'blur' },
+          { type: 'string', message: 'Invalid characters, don\'t use "-"', trigger: 'blur', pattern: regexTeamName },
         ],
         shortname: [
           { required: true, message: 'Please input a tag', trigger: 'blur' },

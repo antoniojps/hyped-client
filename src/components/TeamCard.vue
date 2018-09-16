@@ -144,6 +144,7 @@ export default {
   }
   &__logo {
     height: 60px;
+    min-width: 60px;
     display:flex;
     align-items: center;
     margin-right: $spacingLSmall;
