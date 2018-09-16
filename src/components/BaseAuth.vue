@@ -21,17 +21,22 @@ export default {
   },
   computed: {
     ...mapGetters('user', ['user', 'userLogedIn']),
-    hasAdminPermissions: function () {
+    hasAdminPermissions () {
       if (this.user) return !!this.user.admin
       return false
     },
-    hasModeratorPermissions: function () {
+    hasModeratorPermissions () {
       if (this.user && this.user.moderator) return true
       return this.hasAdminPermissions
     },
-    hasPermissions: function () {
+    hasPlayerPermissions () {
+      if (this.user && this.user.pubgNick !== null) return true
+      return false
+    },
+    hasPermissions () {
       if (this.requires === 'admin') return this.hasAdminPermissions
       if (this.requires === 'moderator') return this.hasModeratorPermissions
+      if (this.requires === 'player') return this.hasPlayerPermissions
       return this.userLogedIn
     },
   },

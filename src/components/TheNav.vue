@@ -35,15 +35,15 @@
       >
         <BaseButton>{{ item.text }}</BaseButton>
       </router-link>
-
-      <router-link
-        v-if="user"
-        to="/teams"
-        class="nav__item"
-        tag="div"
-      >
-        <BaseButton>My Teams</BaseButton>
-      </router-link>
+      <BaseAuth requires="player">
+        <router-link
+          to="/teams"
+          class="nav__item"
+          tag="div"
+        >
+          <BaseButton>My Teams</BaseButton>
+        </router-link>
+      </BaseAuth>
     </div>
     <div class="nav__bottom">
       <div
