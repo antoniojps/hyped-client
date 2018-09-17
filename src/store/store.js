@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import ui from './ui'
 import user from './user'
+import team from './team'
 
 Vue.use(Vuex)
 
@@ -10,5 +11,6 @@ export default new Vuex.Store({
   modules: {
     ui,
     user,
+    team,
   },
 })

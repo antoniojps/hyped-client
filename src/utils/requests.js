@@ -5,6 +5,7 @@ import USER_PUBGNICK_ADD_MUTATION from '../graphql/UserPubgNickAdd.gql'
 import USER_UPDATE_MUTATION from '../graphql/UserUpdate.gql'
 import TEAM_ADD_MUTATION from '../graphql/TeamAdd.gql'
 import TEAM_PLAYER_ADD_MUTATION from '../graphql/TeamPlayerAdd.gql'
+import TEAM_PLAYER_REMOVE_MUTATION from '../graphql/TeamPlayerRemove.gql'
 
 const ax = axios.create({
   baseURL: ENDPOINT,
@@ -57,6 +58,16 @@ export function mutateTeamPlayerAdd (apolloClient, token) {
     mutation: TEAM_PLAYER_ADD_MUTATION,
     variables: {
       token,
+    },
+  })
+}
+
+export function mutateTeamPlayerRemove (apolloClient, teamId, userId) {
+  return apolloClient.mutate({
+    mutation: TEAM_PLAYER_REMOVE_MUTATION,
+    variables: {
+      teamId,
+      userId,
     },
   })
 }

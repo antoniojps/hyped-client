@@ -18,8 +18,9 @@
         Remove captain role
       </el-button>
 
-      <el-button
+      <BaseButtonConfirm
         v-else
+        :action="playerUpdateToCaptain"
         size="mini"
       >
         <BaseIcon
@@ -28,14 +29,14 @@
           src="mix/helmet3"
         />
         Make captain
-      </el-button>
-
-      <el-button
-        :type="leaveTeamBtnType"
+      </BaseButtonConfirm>
+      <BaseButtonConfirm
+        :action="playerRemove"
+        :loading="loadingPlayerRemove"
         size="mini"
       >
         {{ leaveTeamMsg }}
-      </el-button>
+      </BaseButtonConfirm>
     </div>
     <el-button
       slot="reference"
@@ -48,7 +49,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
+import { mutateTeamPlayerRemove } from '@/utils/requests'
 export default {
   name: 'TeamPlayerEditModal',
   props: {
@@ -61,8 +63,14 @@ export default {
       required: true,
     },
   },
+  data () {
+    return {
+      loadingPlayerRemove: false,
+    }
+  },
   computed: {
     ...mapGetters('user', ['user']),
+    ...mapGetters('team', ['team']),
     isLoggedUser () {
       return this.user._id === this.player._id
     },
@@ -73,6 +81,40 @@ export default {
     leaveTeamBtnType () {
       if (this.isLoggedUser) return 'danger'
       return null
+    },
+  },
+  methods: {
+    ...mapMutations('team', ['UPDATE_TEAM']),
+    async playerRemove () {
+      this.loadingPlayerRemove = true
+      try {
+        if (this.isCaptain) throw new Error('Captain')
+        const userId = this.player._id
+        const teamId = this.team._id
+        const { data: { teamPlayerRemove: updatedTeam } } = await mutateTeamPlayerRemove(this.$apollo, teamId, userId)
+        this.UPDATE_TEAM(updatedTeam)
+        this.$message({
+          message: 'Player removed from team',
+          type: 'success',
+        })
+        this.loadingPlayerRemove = false
+      } catch (err) {
+        this.loadingPlayerRemove = false
+        if (this.isCaptain) {
+          this.$message({
+            message: 'You cant remove captains',
+            type: 'error',
+          })
+        } else {
+          this.$message({
+            message: 'Oops, something went wrong...',
+            type: 'error',
+          })
+        }
+      }
+    },
+    playerUpdateToCaptain () {
+      console.log('update to captain')
     },
   },
 }

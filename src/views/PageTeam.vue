@@ -96,7 +96,7 @@ import TeamStats from '@/components/CardStatsList.vue'
 import TeamRoster from '@/components/TeamRoster.vue'
 import TeamAuthCaptain from '@/components/TeamAuthCaptain.vue'
 import TeamInvite from '@/components/TeamInvite.vue'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import TEAM_BY_NAME_QUERY from '@/graphql/TeamByName.gql'
 
 export default {
@@ -125,6 +125,7 @@ export default {
   },
   computed: {
     ...mapGetters('user', ['user']),
+    ...mapGetters('team', ['team']),
     name () {
       // replace hyphen with spaces
       const nameParam = this.$route.params.name
@@ -132,9 +133,6 @@ export default {
     },
     loading () {
       return this.$apollo.loading
-    },
-    team () {
-      return this.teamByName
     },
   },
   apollo: {
@@ -147,6 +145,14 @@ export default {
         fetchPolicy: 'cache-and-network',
       }
     },
+  },
+  watch: {
+    teamByName () {
+      this.UPDATE_TEAM(this.teamByName)
+    },
+  },
+  methods: {
+    ...mapMutations('team', ['UPDATE_TEAM']),
   },
 }
 </script>

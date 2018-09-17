@@ -1,0 +1,6 @@
+#import "./TeamFragment.gql"
+mutation teamPlayerRemove($teamId: ID!, $userId: ID!) {
+  teamPlayerRemove(teamId: $teamId, userId: $userId) {
+		...Team
+  }
+}

@@ -11,7 +11,7 @@
 
         <h3>PUBG Player name</h3>
         <div class="user-pubgnick">
-          <div v-if="user.pubgNick">
+          <div v-if="user && user.pubgNick">
             <UserPubgLogo
               v-if="user"
               :text="user.pubgNick"

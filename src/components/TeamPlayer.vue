@@ -7,7 +7,7 @@
       </div>
       <div class="player__info">
         <div class="player__username">
-          <h5>{{ user.username }}
+          <h5>{{ player.user.username }}
             <BaseIcon
               v-if="isCaptain"
               class="player__icon"
@@ -21,13 +21,19 @@
             height="16"
             src="logos/pubg_logo"
           />
-          <p class="size-xs paddingFix">{{ user.pubgNick }}</p>
+          <p class="size-xs paddingFix">{{ player.user.pubgNick }}</p>
         </div>
       </div>
     </div>
 
     <div class="player__rgt">
-      <TeamPlayerEditModal :player="user" :is-captain="isCaptain"/>
+      <TeamAuthCaptain
+        v-if="user"
+        :roster="team.roster"
+        :user-id="user._id"
+      >
+        <TeamPlayerEditModal :player="player.user" :is-captain="isCaptain"/>
+      </TeamAuthCaptain>
     </div>
 
   </div>
@@ -35,13 +41,16 @@
 
 <script>
 import UserAvatar from '@/components/UserAvatar.vue'
+import TeamAuthCaptain from '@/components/TeamAuthCaptain.vue'
 import TeamPlayerEditModal from '@/components/TeamPlayerEditModal.vue'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'TeamPlayer',
   components: {
     UserAvatar,
     TeamPlayerEditModal,
+    TeamAuthCaptain,
   },
   props: {
     player: {
@@ -50,11 +59,10 @@ export default {
     },
   },
   computed: {
-    user () {
-      return this.player.user
-    },
+    ...mapGetters('team', ['team']),
+    ...mapGetters('user', ['user']),
     avatar () {
-      return this.user.avatar.medium
+      return this.player.user.avatar.medium
     },
     isCaptain () {
       return this.player.role === 'captain'
