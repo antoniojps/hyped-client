@@ -6,8 +6,10 @@
   >
     <div class="player-edit__actions">
 
-      <el-button
+      <BaseButtonConfirm
         v-if="isCaptain"
+        :action="playerUpdateToPlayer"
+        :loading="loadingPlayerUpdate"
         size="mini"
       >
         <BaseIcon
@@ -16,11 +18,12 @@
           src="mix/helmet3"
         />
         Remove captain role
-      </el-button>
+      </BaseButtonConfirm>
 
       <BaseButtonConfirm
         v-else
         :action="playerUpdateToCaptain"
+        :loading="loadingPlayerUpdate"
         size="mini"
       >
         <BaseIcon
@@ -50,7 +53,7 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
-import { mutateTeamPlayerRemove } from '@/utils/requests'
+import { mutateTeamPlayerRemove, mutateTeamPlayerUpdate } from '@/utils/requests'
 export default {
   name: 'TeamPlayerEditModal',
   props: {
@@ -66,11 +69,18 @@ export default {
   data () {
     return {
       loadingPlayerRemove: false,
+      loadingPlayerUpdate: false,
     }
   },
   computed: {
     ...mapGetters('user', ['user']),
     ...mapGetters('team', ['team']),
+    userId () {
+      return this.player._id
+    },
+    teamId () {
+      return this.team._id
+    },
     isLoggedUser () {
       return this.user._id === this.player._id
     },
@@ -89,9 +99,7 @@ export default {
       this.loadingPlayerRemove = true
       try {
         if (this.isCaptain) throw new Error('Captain')
-        const userId = this.player._id
-        const teamId = this.team._id
-        const { data: { teamPlayerRemove: updatedTeam } } = await mutateTeamPlayerRemove(this.$apollo, teamId, userId)
+        const { data: { teamPlayerRemove: updatedTeam } } = await mutateTeamPlayerRemove(this.$apollo, this.teamId, this.userId)
         this.UPDATE_TEAM(updatedTeam)
         this.$message({
           message: 'Player removed from team',
@@ -113,8 +121,29 @@ export default {
         }
       }
     },
+    async playerUpdateRole (role) {
+      this.loadingPlayerUpdate = true
+      try {
+        const { data: { teamPlayerUpdate: updatedTeam } } = await mutateTeamPlayerUpdate(this.$apollo, this.teamId, this.userId, role)
+        this.UPDATE_TEAM(updatedTeam)
+        this.$message({
+          message: 'Player role updated',
+          type: 'success',
+        })
+        this.loadingPlayerUpdate = false
+      } catch (err) {
+        this.loadingPlayerRemove = false
+        this.$message({
+          message: 'Oops, something went wrong...',
+          type: 'error',
+        })
+      }
+    },
     playerUpdateToCaptain () {
-      console.log('update to captain')
+      this.playerUpdateRole('captain')
+    },
+    playerUpdateToPlayer () {
+      this.playerUpdateRole('player')
     },
   },
 }

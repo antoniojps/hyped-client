@@ -1,0 +1,6 @@
+#import "./TeamFragment.gql"
+mutation teamPlayerUpdate($teamId: ID!, $userId: ID!, $role: String!) {
+  teamPlayerUpdate(teamId: $teamId, userId: $userId, role: $role) {
+    ...Team
+  }
+}
