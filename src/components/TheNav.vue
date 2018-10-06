@@ -44,6 +44,17 @@
           <BaseButton>My Teams</BaseButton>
         </router-link>
       </BaseAuth>
+
+      <BaseAuth requires="admin">
+        <h4 class="nav__title faded">Manage</h4>
+        <router-link
+          to="/dashboard"
+          class="nav__item"
+          tag="div"
+        >
+          <BaseButton>Events</BaseButton>
+        </router-link>
+      </BaseAuth>
     </div>
     <div class="nav__bottom">
       <div
