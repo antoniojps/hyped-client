@@ -4,6 +4,7 @@
       v-for="player in roster"
       :key="player._id"
       :player="player"
+      :edit-visible="false"
     />
   </div>
 </template>

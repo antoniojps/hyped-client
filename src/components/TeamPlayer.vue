@@ -26,10 +26,10 @@
       </div>
     </div>
 
-    <div class="player__rgt">
+    <div v-if="editVisible" class="player__rgt">
       <TeamAuthCaptain
         v-if="user"
-        :roster="team.roster"
+        :roster="roster"
         :user-id="user._id"
       >
         <TeamPlayerEditModal :player="player.user" :is-captain="isCaptain"/>
@@ -57,9 +57,18 @@ export default {
       type: Object,
       required: true,
     },
+    roster: {
+      type: Array,
+      required: false,
+      default: () => ([]),
+    },
+    editVisible: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
   computed: {
-    ...mapGetters('team', ['team']),
     ...mapGetters('user', ['user']),
     avatar () {
       return this.player.user.avatar.medium
